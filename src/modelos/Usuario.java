@@ -21,6 +21,22 @@ public class Usuario implements DatabaseAble {
     @Override
     public void ingresarBD() {
         
+        String sentencia = "INSERT INTO usuario(cedula) VALUES('"+getCedula()+"')";
+        
+        System.out.println(""+sentencia);
+
+       try{
+            
+            conexion.conectaBD();
+            
+            idnum.Idnum.conexion.actualizaBD(sentencia);
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println(""+ex);
+        }
+        
     }
 
     @Override
@@ -36,7 +52,12 @@ public class Usuario implements DatabaseAble {
     @Override
     public void consultarBD() {
         
-        String sentencia = "SELECT * FROM usuario WHERE cedula = '"+getCedula()+"' AND clave = SHA2('"+getClave()+"',256)";
+        String sentencia;
+        
+        if(clave != null)
+            sentencia = "SELECT * FROM usuario WHERE cedula = '"+getCedula()+"' AND clave = SHA2('"+getClave()+"',256)";
+        else
+            sentencia = "SELECT * FROM usuario WHERE cedula = '"+getCedula()+"'";
         
         ResultSet rs;
         
@@ -64,6 +85,37 @@ public class Usuario implements DatabaseAble {
     public boolean isRegistered(){
         
         String sentencia = "SELECT * FROM usuario WHERE cedula = '"+getCedula()+"' AND clave = SHA2('"+getClave()+"',256)";
+        
+        ResultSet rs;
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+           
+            if(rs.next()){
+                
+                conexion.cerrar_conexionBD();
+                return true;
+                
+            } else {
+                
+                conexion.cerrar_conexionBD();
+                return false;
+                
+            }
+
+        }catch(Exception ex){
+            System.out.println(""+ex);
+            return false;
+        }
+        
+    }
+    
+    public boolean isPlayer(){
+        
+        String sentencia = "SELECT * FROM jugador WHERE id_usuario = '"+getId_usuario()+"'";
         
         ResultSet rs;
         

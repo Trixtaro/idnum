@@ -12,6 +12,15 @@ public abstract class Validacion {
         
     }
     
+    public static boolean isLetterOrSpace(char character){
+        
+        if((character <= 'Z' && character >= 'A') || (character <= 'z' && character >= 'a') || character == ' ')
+            return true;
+        else
+            return false;
+        
+    }
+    
     public static boolean isMaxLength(String text, int max_length){
     
         if(text.length() == max_length)

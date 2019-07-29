@@ -12,9 +12,14 @@ import vistas.Login_Vista;
 
 public class Login_Controller implements ActionListener, KeyListener{
     
+    public static Login_Controller login_Controller;
+    
     Login_Vista vista;
     
     public Login_Controller(){
+        
+        this.login_Controller = this;
+        
         this.vista = new Login_Vista();
         
         this.vista.boton_ingresar.addActionListener(this);
@@ -49,33 +54,54 @@ public class Login_Controller implements ActionListener, KeyListener{
         } else
             
         if(event.getSource() == vista.boton_ingresar){
+            
+            if(vista.txt_usuario.getText().length() < 10){
+                JOptionPane.showMessageDialog(vista, "La cédula debe tener 10 dígitos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
         
-            Usuario usuario = new Usuario(vista.txt_usuario.getText(), vista.txt_clave.getText());
+            Usuario usuario = new Usuario(vista.txt_usuario.getText(), null);
             
             if(vista.radio_administrador.isSelected()){
+                
+                usuario.setClave(vista.txt_clave.getText());
             
                 if(usuario.isRegistered()){
                 
-                    vista.dispose();
+                    vista.setVisible(false);
                     
                     Contenido_Controlador contenido_controlador = new Contenido_Controlador();
                     contenido_controlador.iniciar();
                 
                 } else {
                 
-                    JOptionPane.showMessageDialog(vista, "El cedula y la contraseña no coinciden.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                
+                    JOptionPane.showMessageDialog(vista, "La cédula y la contraseña no coinciden.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    vista.txt_clave.setText("");
+                    
                 }
             
             } else
                 
             if(vista.radio_jugador.isSelected()){
                 
+                vista.dispose();
                 
+                usuario.consultarBD();
+                
+                if(usuario.isPlayer()){
+                    
+                    //TODO: llamar al controlador para hacer el test
+                
+                } else {
+                
+                    Nuevo_Jugador_Controlador nuevo_Jugador_Controlador = new Nuevo_Jugador_Controlador(usuario);
+                    nuevo_Jugador_Controlador.iniciar();
+                
+                }
                 
             }
         
-        }
+        } else
         
         if(event.getSource() == vista.boton_salir){
         

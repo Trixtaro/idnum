@@ -1,6 +1,8 @@
 
 package modelos;
 
+import static idnum.Idnum.conexion;
+
 public class Jugador implements DatabaseAble{
     
     int id_jugador;
@@ -23,6 +25,31 @@ public class Jugador implements DatabaseAble{
     
     @Override
     public void ingresarBD() {
+        
+        if(usuario.isRegistered() == false){
+                usuario.ingresarBD();
+                usuario.consultarBD();
+        }
+        
+        String sentencia = "INSERT INTO jugador(grado, nombres, nombres_ayudante, edad, id_usuario) "
+                + "VALUES('"+getGrado()+"','"+getNombre_jugador()+"','"+getNombre_ayudante()+"',"
+                + "'"+getEdad()+"','"+getUsuario().getId_usuario()+"')";
+        
+        System.out.println(""+sentencia);
+
+       try{
+            
+            conexion.conectaBD();
+            
+            
+            
+            idnum.Idnum.conexion.actualizaBD(sentencia);
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println(""+ex);
+        }
         
     }
 
