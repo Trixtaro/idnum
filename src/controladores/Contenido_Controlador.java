@@ -117,7 +117,8 @@ public class Contenido_Controlador implements ActionListener{
         }
         
         if(e.getSource()== vista.boton_salir){
-        vista.dispose();
+            vista.dispose();
+            Juego_Controller.juego_Controller.vista.setVisible(true);
         }
         
     }

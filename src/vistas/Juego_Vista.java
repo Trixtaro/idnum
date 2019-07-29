@@ -34,6 +34,7 @@ public class Juego_Vista extends javax.swing.JFrame {
         boton_salir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        boton_agregar_contenido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -67,6 +68,8 @@ public class Juego_Vista extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
+        boton_agregar_contenido.setText("Agregar contenido");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,6 +81,8 @@ public class Juego_Vista extends javax.swing.JFrame {
                         .addComponent(boton_agregar)
                         .addGap(18, 18, 18)
                         .addComponent(boton_borrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(boton_agregar_contenido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(boton_salir))
                     .addGroup(layout.createSequentialGroup()
@@ -103,7 +108,8 @@ public class Juego_Vista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_agregar)
                     .addComponent(boton_borrar)
-                    .addComponent(boton_salir))
+                    .addComponent(boton_salir)
+                    .addComponent(boton_agregar_contenido))
                 .addContainerGap())
         );
 
@@ -147,6 +153,7 @@ public class Juego_Vista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton boton_agregar;
+    public javax.swing.JButton boton_agregar_contenido;
     public javax.swing.JButton boton_borrar;
     public javax.swing.JButton boton_jugar;
     public javax.swing.JButton boton_salir;

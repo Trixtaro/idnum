@@ -51,7 +51,7 @@ public class Contenido_Vista extends javax.swing.JFrame {
 
         boton_agregar.setText("Agregar contenido");
 
-        boton_salir.setText("Salir");
+        boton_salir.setText("Regresar");
 
         boton_borrar.setText("Borrar contenido");
 

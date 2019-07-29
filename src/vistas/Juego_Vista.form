@@ -31,6 +31,8 @@
                       <Component id="boton_agregar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="boton_borrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="boton_agregar_contenido" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="boton_salir" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -65,6 +67,7 @@
                   <Component id="boton_agregar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="boton_borrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="boton_salir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boton_agregar_contenido" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -135,5 +138,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="boton_agregar_contenido">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar contenido"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
   </SubComponents>
 </Form>

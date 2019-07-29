@@ -26,6 +26,7 @@ public class Juego_Controller implements ActionListener{
         this.vista.boton_agregar.addActionListener(this);
         this.vista.boton_borrar.addActionListener(this);
         this.vista.boton_jugar.addActionListener(this);
+        this.vista.boton_agregar_contenido.addActionListener(this);
         this.vista.boton_salir.addActionListener(this);
         
         this.vista.boton_jugar.setEnabled(false);
@@ -47,6 +48,7 @@ public class Juego_Controller implements ActionListener{
         
         this.vista.boton_agregar.setEnabled(false);
         this.vista.boton_borrar.setEnabled(false);
+        this.vista.boton_agregar_contenido.setEnabled(false);
         
     }
     
@@ -72,6 +74,14 @@ public class Juego_Controller implements ActionListener{
             vista.setVisible(false);
             Nuevo_Juego_Controlador nuevo_Juego_Controlador = new Nuevo_Juego_Controlador();
             nuevo_Juego_Controlador.iniciar();
+            
+        } else
+            
+        if(event.getSource() == vista.boton_agregar_contenido){
+            
+            vista.setVisible(false);
+            Contenido_Controlador contenido_Controlador = new Contenido_Controlador();
+            contenido_Controlador.iniciar();
             
         } else
         
