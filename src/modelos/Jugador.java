@@ -2,6 +2,7 @@
 package modelos;
 
 import static idnum.Idnum.conexion;
+import java.sql.ResultSet;
 
 public class Jugador implements DatabaseAble{
     
@@ -11,6 +12,10 @@ public class Jugador implements DatabaseAble{
     String nombre_ayudante;
     int edad;
     Usuario usuario;
+    
+    public Jugador(Usuario usuario){
+        this.usuario = usuario;
+    }
 
     public Jugador(String grado, String nombre_jugador, String nombre_ayudante, int edad, Usuario usuario) {
         this.grado = grado;
@@ -66,6 +71,32 @@ public class Jugador implements DatabaseAble{
     @Override
     public void consultarBD() {
        
+        String sentencia = "SELECT * FROM jugador WHERE id_usuario = '"+getUsuario().getId_usuario()+"'";
+        
+        ResultSet rs;
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+           
+            if(rs.next()){
+                
+                this.setId_jugador(rs.getInt("id_jugador"));
+                this.setNombre_jugador(rs.getString("nombres"));
+                this.setNombre_ayudante(rs.getString("nombres_ayudante"));
+                this.setGrado(rs.getString("grado"));
+                this.setEdad(rs.getInt("edad"));
+                
+            }
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println(""+ex);
+        }
+        
     }
 
     public int getId_jugador() {

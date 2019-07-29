@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
+import modelos.Jugador;
 import modelos.Usuario;
 import modelos.Validacion;
 import vistas.Login_Vista;
@@ -68,10 +69,10 @@ public class Login_Controller implements ActionListener, KeyListener{
             
                 if(usuario.isRegistered()){
                 
-                    vista.setVisible(false);
+                    vista.dispose();
                     
-                    Contenido_Controlador contenido_controlador = new Contenido_Controlador();
-                    contenido_controlador.iniciar();
+                    Juego_Controller juego_Controller = new Juego_Controller();
+                    juego_Controller.iniciar();
                 
                 } else {
                 
@@ -84,15 +85,23 @@ public class Login_Controller implements ActionListener, KeyListener{
                 
             if(vista.radio_jugador.isSelected()){
                 
-                vista.dispose();
+                
                 
                 usuario.consultarBD();
                 
                 if(usuario.isPlayer()){
                     
-                    //TODO: llamar al controlador para hacer el test
+                    vista.dispose();
+                    
+                    Jugador jugador = new Jugador(usuario);
+                    jugador.consultarBD();
+                    
+                    Juego_Controller juego_Controller = new Juego_Controller(jugador);
+                    juego_Controller.iniciar();
                 
                 } else {
+                    
+                    vista.setVisible(false);
                 
                     Nuevo_Jugador_Controlador nuevo_Jugador_Controlador = new Nuevo_Jugador_Controlador(usuario);
                     nuevo_Jugador_Controlador.iniciar();
@@ -127,6 +136,20 @@ public class Login_Controller implements ActionListener, KeyListener{
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        
+        if(ke.getSource() == vista.txt_usuario && vista.radio_administrador.isSelected()){
+            
+            if(ke.getKeyCode() == KeyEvent.VK_ENTER)
+                vista.txt_clave.requestFocus();
+            
+        } else
+            
+        if(ke.getSource() == vista.txt_clave || vista.radio_jugador.isSelected()){
+            
+            if(ke.getKeyCode() == KeyEvent.VK_ENTER)
+                this.actionPerformed(new ActionEvent(vista.boton_ingresar, 0, ""));
+            
+        }
         
     }
 

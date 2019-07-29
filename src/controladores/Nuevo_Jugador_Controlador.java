@@ -55,7 +55,9 @@ public class Nuevo_Jugador_Controlador implements ActionListener, KeyListener{
             
             jugador.ingresarBD();
             
-            //TODO: controlador de juego
+            vista.dispose();
+            Juego_Controller juego_Controller = new Juego_Controller();
+            juego_Controller.iniciar();
             
         } else
             
