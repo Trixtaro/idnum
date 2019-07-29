@@ -3,6 +3,7 @@ package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Contenido;
 import modelos.Juego;
@@ -19,7 +20,7 @@ public class Juego_Controller implements ActionListener{
     
     public Juego_Controller(){
         
-        this.juego_Controller = this;
+        juego_Controller = this;
         
         this.vista = new Juego_Vista();
         
@@ -35,7 +36,7 @@ public class Juego_Controller implements ActionListener{
     
     public Juego_Controller(Jugador jugador){
         
-        this.juego_Controller = this;
+        juego_Controller = this;
         
         this.vista = new Juego_Vista();
         
@@ -82,6 +83,26 @@ public class Juego_Controller implements ActionListener{
             vista.setVisible(false);
             Contenido_Controlador contenido_Controlador = new Contenido_Controlador();
             contenido_Controlador.iniciar();
+            
+        } else
+            
+        if(event.getSource() == vista.boton_jugar){
+            
+            int codigo = 0;
+            
+            try {
+                codigo = (int) vista.tabla.getValueAt(vista.tabla.getSelectedRow(), 0);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(vista, "Debe seleccionar un juego", "Aviso", JOptionPane.WARNING_MESSAGE);
+               return ;
+            }
+            
+            Juego juego = Juego.getJuegoPorNombre(vista.tabla.getValueAt(vista.tabla.getSelectedRow(), 1).toString());
+            
+            vista.setVisible(false);
+            Iniciar_Juego_Controlador iniciar_Juego_Controlador = new Iniciar_Juego_Controlador(jugador, juego);
+            iniciar_Juego_Controlador.iniciar();
+            
             
         } else
         

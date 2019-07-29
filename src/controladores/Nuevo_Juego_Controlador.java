@@ -42,9 +42,9 @@ public class Nuevo_Juego_Controlador implements ActionListener{
             }
             
             juego = new Juego(vista.txt_nombre.getText(), 
-                    getContenidoPorNombre(vista.combo_primer_contenido.getSelectedItem().toString()), 
-                    getContenidoPorNombre(vista.combo_segundo_contenido.getSelectedItem().toString()), 
-                    getContenidoPorNombre(vista.combo_tercer_contenido.getSelectedItem().toString()));
+                    Contenido.getContenidoPorNombre(vista.combo_primer_contenido.getSelectedItem().toString()), 
+                    Contenido.getContenidoPorNombre(vista.combo_segundo_contenido.getSelectedItem().toString()), 
+                    Contenido.getContenidoPorNombre(vista.combo_tercer_contenido.getSelectedItem().toString()));
             
             juego.ingresarBD();
         
@@ -80,25 +80,5 @@ public class Nuevo_Juego_Controlador implements ActionListener{
         }
         
     }
-    
-    private Contenido getContenidoPorNombre(String nombre_contenido){
-        
-        int contador = 0;
-        
-        Contenido [] contenidos = Contenido.getContenidos();
-        
-        while(contenidos[contador] != null){
-            
-            if(contenidos[contador].getNombre_contenido().equals(nombre_contenido))
-                return contenidos[contador];
-            
-            contador++;            
-        }
-        
-        return null;
-        
-    }
-    
-    
     
 }

@@ -129,6 +129,24 @@ public class Juego implements DatabaseAble{
         }
         return null;
     }
+    
+    public static Juego getJuegoPorNombre(String nombre_juego){
+        
+        int contador = 0;
+        
+        Juego [] juegos = Juego.getJuegos();
+        
+        while(juegos[contador] != null){
+            
+            if(juegos[contador].getNombre().equals(nombre_juego))
+                return juegos[contador];
+            
+            contador++;            
+        }
+        
+        return null;
+        
+    }
 
     public int getId_juego() {
         return id_juego;

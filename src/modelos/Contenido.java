@@ -57,6 +57,24 @@ public class Contenido implements DatabaseAble{
         }
         return null;
     }
+    
+    public static Contenido getContenidoPorNombre(String nombre_contenido){
+        
+        int contador = 0;
+        
+        Contenido [] contenidos = Contenido.getContenidos();
+        
+        while(contenidos[contador] != null){
+            
+            if(contenidos[contador].getNombre_contenido().equals(nombre_contenido))
+                return contenidos[contador];
+            
+            contador++;            
+        }
+        
+        return null;
+        
+    }
 
     public Contenido(int id_contenido) {
         this.id_contenido = id_contenido;
