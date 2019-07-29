@@ -32,15 +32,16 @@ public class Login_Vista extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_usuario = new javax.swing.JTextField();
-        txt_clave = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         radio_jugador = new javax.swing.JRadioButton();
         radio_administrador = new javax.swing.JRadioButton();
         boton_ingresar = new javax.swing.JButton();
         boton_salir = new javax.swing.JButton();
+        txt_clave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -48,7 +49,7 @@ public class Login_Vista extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("USUARIO");
+        jLabel2.setText("CEDULA");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -93,6 +94,8 @@ public class Login_Vista extends javax.swing.JFrame {
 
         boton_salir.setText("SALIR");
 
+        txt_clave.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,11 +107,11 @@ public class Login_Vista extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_usuario)
-                    .addComponent(txt_clave)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(boton_salir))
+                    .addComponent(txt_clave)
                     .addComponent(boton_ingresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -183,7 +186,7 @@ public class Login_Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JRadioButton radio_administrador;
     public javax.swing.JRadioButton radio_jugador;
-    public javax.swing.JTextField txt_clave;
+    public javax.swing.JPasswordField txt_clave;
     public javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,9 @@
 
 package modelos;
 
+import static idnum.Idnum.conexion;
+import java.sql.ResultSet;
+
 public class Usuario implements DatabaseAble {
     int id_usuario;
     String cedula;
@@ -32,6 +35,60 @@ public class Usuario implements DatabaseAble {
 
     @Override
     public void consultarBD() {
+        
+        String sentencia = "SELECT * FROM usuario WHERE cedula = '"+getCedula()+"' AND clave = SHA2('"+getClave()+"',256)";
+        
+        ResultSet rs;
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+           
+            if(rs.next()){
+                
+                this.setId_usuario(rs.getInt("id_usuario"));
+                this.setCedula(rs.getString("cedula"));
+                
+            }
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println(""+ex);
+        }
+        
+    }
+    
+    public boolean isRegistered(){
+        
+        String sentencia = "SELECT * FROM usuario WHERE cedula = '"+getCedula()+"' AND clave = SHA2('"+getClave()+"',256)";
+        
+        ResultSet rs;
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+           
+            if(rs.next()){
+                
+                conexion.cerrar_conexionBD();
+                return true;
+                
+            } else {
+                
+                conexion.cerrar_conexionBD();
+                return false;
+                
+            }
+
+        }catch(Exception ex){
+            System.out.println(""+ex);
+            return false;
+        }
         
     }
 
