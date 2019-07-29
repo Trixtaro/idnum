@@ -2,6 +2,7 @@
 package idnum;
 
 import controladores.Contenido_Controlador;
+import controladores.Login_Controller;
 import modelos.Conexion;
 
 public class Idnum {
@@ -10,8 +11,8 @@ public class Idnum {
 
     public static void main(String[] args) {
         
-        Contenido_Controlador contenido_Controlador = new Contenido_Controlador();
-        contenido_Controlador.iniciar();
+        Login_Controller login_Controller = new Login_Controller();
+        login_Controller.iniciar();
     }
     
 }
