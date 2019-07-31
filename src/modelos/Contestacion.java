@@ -1,6 +1,8 @@
 
 package modelos;
 
+import static idnum.Idnum.conexion;
+
 public class Contestacion implements DatabaseAble{
     
     Pregunta pregunta;
@@ -8,6 +10,7 @@ public class Contestacion implements DatabaseAble{
     Jugador jugador;
     char contestacion_objetiva;
     String contestacion_escrita;
+    String fecha;
 
     public Contestacion(Pregunta pregunta, Juego juego, Jugador jugador, char contestacion_objetiva, String contestacion_escrita) {
         this.pregunta = pregunta;
@@ -19,6 +22,29 @@ public class Contestacion implements DatabaseAble{
 
     @Override
     public void ingresarBD() {
+        
+        String sentencia;
+        
+        if(getContestacion_objetiva() != 'X')
+            sentencia = "INSERT INTO contestacion (id_pregunta, id_jugador, id_juego, contestacion_objetiva, fecha) "
+                    + "VALUES ('"+getPregunta().getId_pregunta()+"','"+getJugador().getId_jugador()+"',"
+                    + "'"+getJuego().getId_juego()+"','"+getContestacion_objetiva()+"','"+getFecha()+"')";
+        else
+            sentencia = "INSERT INTO contestacion (id_pregunta, id_jugador, id_juego, contestacion_escrita, fecha) "
+                    + "VALUES ('"+getPregunta().getId_pregunta()+"','"+getJugador().getId_jugador()+"',"
+                    + "'"+getJuego().getId_juego()+"','"+getContestacion_escrita()+"','"+getFecha()+"')";
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            conexion.actualizaBD(sentencia);
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println("Contestacion - ingresar: "+ex);
+        }
         
     }
 
@@ -75,6 +101,14 @@ public class Contestacion implements DatabaseAble{
 
     public void setContestacion_escrita(String contestacion_escrita) {
         this.contestacion_escrita = contestacion_escrita;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
     
     

@@ -45,15 +45,18 @@ public class Responder_Pregunta_Controlador implements ActionListener, MouseList
         if(getPregunta() == null){
             
             JOptionPane.showMessageDialog(null, "Prueba finalizada");
+            Iniciar_Juego_Controlador.controlador.terminar_prueba();
             return;
             
         }
         
-        vista.setTitle(getPregunta().getContenido().getNombre_contenido()+" - Pregunta "+(indice+1));
+        Pregunta pregunta = getPregunta();
+        
+        pregunta.getContenido().consultarBD();
+        
+        vista.setTitle(pregunta.getContenido().getNombre_contenido()+" - Pregunta "+(indice+1));
         
         vista.etiqueta_pregunta.setIcon(getPregunta().getImageAsIcon());
-        
-        Pregunta pregunta = getPregunta();
         
         vista.etiqueta_a.setIcon(pregunta.getLiteral_A().getImageAsIcon());
         vista.etiqueta_b.setIcon(pregunta.getLiteral_B().getImageAsIcon());
@@ -100,7 +103,9 @@ public class Responder_Pregunta_Controlador implements ActionListener, MouseList
             
         }
 
-        Iniciar_Juego_Controlador.contestaciones.add(contestacion);
+        Iniciar_Juego_Controlador.controlador.contestaciones.add(contestacion);
+        Iniciar_Juego_Controlador.controlador.preguntas_respondidas++;
+        Iniciar_Juego_Controlador.controlador.actualizarVista();
         
         vista.dispose();
         
