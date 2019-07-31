@@ -31,9 +31,9 @@
                       <Component id="boton_agregar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="boton_borrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="boton_agregar_contenido" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="boton_agregar_contenido" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="boton_salir" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -140,7 +140,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="boton_agregar_contenido">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar contenido"/>
+        <Property name="text" type="java.lang.String" value="Configuracion de contenidos"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

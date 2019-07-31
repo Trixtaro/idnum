@@ -68,7 +68,7 @@ public class Juego_Vista extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        boton_agregar_contenido.setText("Agregar contenido");
+        boton_agregar_contenido.setText("Configuracion de contenidos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,9 +81,9 @@ public class Juego_Vista extends javax.swing.JFrame {
                         .addComponent(boton_agregar)
                         .addGap(18, 18, 18)
                         .addComponent(boton_borrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(boton_agregar_contenido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boton_agregar_contenido)
+                        .addGap(18, 18, 18)
                         .addComponent(boton_salir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

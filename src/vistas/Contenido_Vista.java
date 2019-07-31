@@ -55,7 +55,7 @@ public class Contenido_Vista extends javax.swing.JFrame {
 
         boton_borrar.setText("Borrar contenido");
 
-        boton_seleccionar.setText("Seleccionar contenido");
+        boton_seleccionar.setText("Modificar contenido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

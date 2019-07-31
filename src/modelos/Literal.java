@@ -3,7 +3,9 @@ package modelos;
 
 import java.sql.Blob;
 import static idnum.Idnum.conexion;
+import java.awt.Image;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
 
 public class Literal implements DatabaseAble{
      
@@ -15,6 +17,10 @@ public class Literal implements DatabaseAble{
     
     Blob imagen;
 
+    
+    public Literal(int id_literal) {
+        this.id_literal = id_literal;
+    }
     
     // Constructor para preguntas caracter
     public Literal(String caracter) {
@@ -61,7 +67,9 @@ public class Literal implements DatabaseAble{
                 contador++;
             }
             
-            // conexion.cerrar_conexionBD();
+            rs.close();
+            
+            conexion.cerrar_conexionBD();
             
             return literales;
         }catch(Exception ex){
@@ -69,6 +77,69 @@ public class Literal implements DatabaseAble{
         }
         return null;
     
+    }
+    
+    public ImageIcon getImageAsIcon(){
+        
+        Image foto = null;
+        ImageIcon icon;
+        try{
+            
+            foto = javax.imageio.ImageIO.read(getImagen().getBinaryStream());
+            foto = foto.getScaledInstance(96, 96, Image.SCALE_DEFAULT);                                
+            icon = new ImageIcon(foto);
+            
+            return icon;
+        
+        } catch (Exception ex){
+            
+            System.out.println(""+ex);
+            return null;
+        }
+    }
+    
+    @Override
+    public void ingresarBD() {
+    
+    }
+
+    @Override
+    public void actualizarBD() {
+       
+    }
+
+    @Override
+    public void borrarBD() {
+        
+    }
+
+    @Override
+    public void consultarBD() {
+        
+        String sentencia = "SELECT * FROM literal WHERE id_literal = '"+getId_literal()+"'";
+        
+        ResultSet rs;
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+           
+            if(rs.next()){
+                
+                this.setTipo_literal(rs.getString("tipo"));
+                this.setCaracter(rs.getString("caracter"));
+                this.setImagen(rs.getBlob("imagen"));
+                
+            }
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println("Literal - consultarBD: "+ex);
+        }
+        
     }
 
     public int getId_literal() {
@@ -101,34 +172,6 @@ public class Literal implements DatabaseAble{
 
     public void setImagen(Blob imagen) {
         this.imagen = imagen;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-
-    @Override
-    public void ingresarBD() {
-    
-    }
-
-    @Override
-    public void actualizarBD() {
-       
-    }
-
-    @Override
-    public void borrarBD() {
-        
-    }
-
-    @Override
-    public void consultarBD() {
-        
     }
     
 }

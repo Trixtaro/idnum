@@ -121,6 +121,8 @@ public class Juego implements DatabaseAble{
                 contador++;
             }
             
+            rs.close();
+            
             conexion.cerrar_conexionBD();
             
             return contenidos;

@@ -3,24 +3,17 @@ package modelos;
 
 public class Contestacion implements DatabaseAble{
     
-    int id_pregunta;
-    int id_juego;
-    int id_jugador;
-    String fecha;
+    Pregunta pregunta;
+    Juego juego;
+    Jugador jugador;
     char contestacion_objetiva;
     String contestacion_escrita;
 
-    public Contestacion(int id_juego, int id_jugador, String fecha, char contestacion_objetiva) {
-        this.id_juego = id_juego;
-        this.id_jugador = id_jugador;
-        this.fecha = fecha;
+    public Contestacion(Pregunta pregunta, Juego juego, Jugador jugador, char contestacion_objetiva, String contestacion_escrita) {
+        this.pregunta = pregunta;
+        this.juego = juego;
+        this.jugador = jugador;
         this.contestacion_objetiva = contestacion_objetiva;
-    }
-
-    public Contestacion(int id_juego, int id_jugador, String fecha, String contestacion_escrita) {
-        this.id_juego = id_juego;
-        this.id_jugador = id_jugador;
-        this.fecha = fecha;
         this.contestacion_escrita = contestacion_escrita;
     }
 
@@ -44,36 +37,28 @@ public class Contestacion implements DatabaseAble{
         
     }
 
-    public int getId_pregunta() {
-        return id_pregunta;
+    public Pregunta getPregunta() {
+        return pregunta;
     }
 
-    public void setId_pregunta(int id_pregunta) {
-        this.id_pregunta = id_pregunta;
+    public void setPregunta(Pregunta pregunta) {
+        this.pregunta = pregunta;
     }
 
-    public int getId_juego() {
-        return id_juego;
+    public Juego getJuego() {
+        return juego;
     }
 
-    public void setId_juego(int id_juego) {
-        this.id_juego = id_juego;
+    public void setJuego(Juego juego) {
+        this.juego = juego;
     }
 
-    public int getId_jugador() {
-        return id_jugador;
+    public Jugador getJugador() {
+        return jugador;
     }
 
-    public void setId_jugador(int id_jugador) {
-        this.id_jugador = id_jugador;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 
     public char getContestacion_objetiva() {
@@ -93,5 +78,5 @@ public class Contestacion implements DatabaseAble{
     }
     
     
-    
+ 
 }

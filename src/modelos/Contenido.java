@@ -144,6 +144,8 @@ public class Contenido implements DatabaseAble{
                 
             }
             
+            rs.close();
+            
             conexion.cerrar_conexionBD();
 
         }catch(Exception ex){

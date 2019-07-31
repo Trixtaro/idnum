@@ -78,26 +78,12 @@ public class Pregunta_Literal_Controlador implements ActionListener{
         
         while(literales[contador] != null){
             
-            Image foto = null;
-            ImageIcon icon;
-            Blob b = literales[contador].getImagen();
-            try{
-           
-                foto = javax.imageio.ImageIO.read(b.getBinaryStream());
-                
-                
-                foto = foto.getScaledInstance(192, 192, Image.SCALE_SMOOTH);                                
-                icon = new ImageIcon(foto);
-                
-                modelo.addRow(new Object[]{ 
-                literales[contador].getId_literal(), 
-                icon
-            });
-                
-            }catch(Exception ex){
-                System.out.println("Fallo"+ex);
-            }
             
+            modelo.addRow(new Object[]{ 
+                literales[contador].getId_literal(), 
+                literales[contador].getImageAsIcon()
+            });
+       
             contador++;            
         }
         

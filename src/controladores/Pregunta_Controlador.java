@@ -1,15 +1,11 @@
 
 package controladores;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.sql.Blob;
-import java.util.Set;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -83,23 +79,12 @@ public class Pregunta_Controlador implements ActionListener, WindowListener{
         
         while(preguntas[contador] != null){
             
-            Image foto = null;
-            ImageIcon icon;
-            Blob b = preguntas[contador].getImagen();
-            try{
-                foto = javax.imageio.ImageIO.read(b.getBinaryStream());
-                foto = foto.getScaledInstance(96, 96, Image.SCALE_DEFAULT);                                
-                icon = new ImageIcon(foto);
-                
-                modelo.addRow(new Object[]{ 
+            modelo.addRow(new Object[]{ 
                 preguntas[contador].getId_pregunta(), 
-                icon, 
+                preguntas[contador].getImageAsIcon(), 
                 preguntas[contador].getTipo()
             });
-                
-            }catch(Exception ex){
-                System.out.println("Fallo"+ex);
-            }
+
             
             contador++;            
         }

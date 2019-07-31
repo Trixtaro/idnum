@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Contenido;
 import vistas.Contenido_Vista;
-import vistas.Pregunta_Vista;
 
 public class Contenido_Controlador implements ActionListener{
     
