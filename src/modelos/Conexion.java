@@ -58,13 +58,14 @@ public class Conexion {
         cursor=stm.executeQuery(sql);
         return cursor;
     }
-    public void actualizaBD(String sql) throws Exception{
+    public boolean actualizaBD(String sql) throws Exception{
         try {
             Statement stm=conexion.createStatement();
             stm.executeUpdate(sql);
-            //System.out.println("Transaccion exitosa !commit!");
+            return true;
         } catch (Exception e) {
-            System.out.println("Error en la transaccion !Rollback!"+e.toString());
+            System.out.println(""+e);
+            return false;
         }
     }
     public void cerrar_conexionBD()throws Exception{

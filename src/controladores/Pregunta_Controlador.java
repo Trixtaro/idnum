@@ -158,8 +158,10 @@ public class Pregunta_Controlador implements ActionListener{
             
             Pregunta pregunta = new Pregunta(codigo);
             
-            if(pregunta.borrarBD() == false)
+            if(pregunta.borrarBD() == false){
+                JOptionPane.showMessageDialog(null, "No se puede borrar esta contenido.", "Borrar contenido", JOptionPane.WARNING_MESSAGE);
                 return;
+            }
             
             DefaultTableModel modelo = (DefaultTableModel) vista.tabla_pregunta.getModel();
             

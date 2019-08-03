@@ -162,14 +162,13 @@ public class Literal implements DatabaseAble{
             
             conexion.conectaBD();
             
-            idnum.Idnum.conexion.actualizaBD(sentencia);
+            boolean resultado = idnum.Idnum.conexion.actualizaBD(sentencia);
             
             conexion.cerrar_conexionBD();
             
-            return true;
+            return resultado;
 
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "No se puede borrar este literal.", "Borrar literal", JOptionPane.WARNING_MESSAGE);
             System.out.println("Literal - borrarbd: "+ex);
             return false;
         }

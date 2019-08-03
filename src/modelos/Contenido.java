@@ -86,9 +86,7 @@ public class Contenido implements DatabaseAble{
     @Override
     public void ingresarBD() {
        String sentencia = "INSERT INTO contenido(nombre_contenido) VALUES('"+getNombre_contenido()+"') ";
-       
-        System.out.println(""+sentencia);
-       
+
        try{
             
             conexion.conectaBD();
@@ -98,7 +96,7 @@ public class Contenido implements DatabaseAble{
             conexion.cerrar_conexionBD();
 
         }catch(Exception ex){
-            System.out.println(""+ex);
+            System.out.println("Contenido - ingresarbd: "+ex);
         }
     }
 
@@ -116,16 +114,13 @@ public class Contenido implements DatabaseAble{
             
             conexion.conectaBD();
             
-            System.out.println("Hola");
-            
-            idnum.Idnum.conexion.actualizaBD(sentencia);
+            boolean resultado = idnum.Idnum.conexion.actualizaBD(sentencia);
             
             conexion.cerrar_conexionBD();
             
-            return true;
+            return resultado;
 
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "No se puede borrar este contenido.", "Borrar contenido", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         

@@ -91,8 +91,10 @@ public class Contenido_Controlador implements ActionListener{
             
             Contenido contenido = new Contenido(codigo);
             
-            if(contenido.borrarBD() == false)
+            if(contenido.borrarBD() == false){
+                JOptionPane.showMessageDialog(null, "No se puede borrar este contenido.", "Borrar contenido", JOptionPane.WARNING_MESSAGE);
                 return;
+            }
             
             DefaultTableModel modelo = (DefaultTableModel) vista.tabla_contenidos.getModel();
             

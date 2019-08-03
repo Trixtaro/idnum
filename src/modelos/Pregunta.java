@@ -192,14 +192,13 @@ public class Pregunta implements DatabaseAble{
             
             conexion.conectaBD();
             
-            idnum.Idnum.conexion.actualizaBD(sentencia);
+            boolean resultado = idnum.Idnum.conexion.actualizaBD(sentencia);
             
             conexion.cerrar_conexionBD();
             
-            return true;
+            return resultado;
 
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "No se puede borrar esta contenido.", "Borrar contenido", JOptionPane.WARNING_MESSAGE);
+        }catch(Exception ex){            
             System.out.println("Pregunta - borrarbd: "+ex);
             return false;
         }

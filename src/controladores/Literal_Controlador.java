@@ -69,29 +69,31 @@ public class Literal_Controlador implements ActionListener, ItemListener{
                     
                 }
                 
-            } else
-                
-            if(event.getSource() == vista.boton_borrar){
-                
-                int codigo;
-                try {
-                    codigo = (int) vista.tabla.getValueAt(vista.tabla.getSelectedRow(), 0);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(vista, "Debe seleccionar un literal", "Aviso", JOptionPane.WARNING_MESSAGE);
-                return ;
-                }
-            
-                Literal literal = new Literal(codigo);
-            
-                if(literal.borrarBD() == false)
-                    return;
-            
-                DefaultTableModel modelo = (DefaultTableModel) vista.tabla.getModel();
-            
-                modelo.removeRow(vista.tabla.getSelectedRow()); 
-                
             }
             
+        } else
+            
+        if(event.getSource() == vista.boton_borrar){
+                
+            int codigo;
+            try {
+                codigo = (int) vista.tabla.getValueAt(vista.tabla.getSelectedRow(), 0);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(vista, "Debe seleccionar un literal", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return ;
+        }
+            
+            Literal literal = new Literal(codigo);
+            
+            if(literal.borrarBD() == false){
+                JOptionPane.showMessageDialog(null, "No se puede borrar este literal.", "Borrar literal", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            DefaultTableModel modelo = (DefaultTableModel) vista.tabla.getModel();
+            
+            modelo.removeRow(vista.tabla.getSelectedRow()); 
+                
         } else
         
         if(event.getSource() == vista.boton_retroceder){
