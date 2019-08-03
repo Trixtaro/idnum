@@ -9,12 +9,12 @@ package vistas;
  *
  * @author WILMER CEDEÑO
  */
-public class Juego_Vista extends javax.swing.JFrame {
+public class Juegos_Jugados_Vista extends javax.swing.JFrame {
 
     /**
-     * Creates new form Juego_Vista
+     * Creates new form Juegos_Jugados_Vista
      */
-    public Juego_Vista() {
+    public Juegos_Jugados_Vista() {
         initComponents();
     }
 
@@ -27,41 +27,36 @@ public class Juego_Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        boton_agregar = new javax.swing.JButton();
-        boton_borrar = new javax.swing.JButton();
-        boton_jugar = new javax.swing.JButton();
-        boton_salir = new javax.swing.JButton();
+        boton_regresar = new javax.swing.JButton();
+        boton_excel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        boton_agregar_contenido = new javax.swing.JButton();
-        boton_historial = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Juegos");
+        boton_regresar.setText("Regresar");
 
-        boton_agregar.setText("Agregar juego");
-
-        boton_borrar.setText("Borrar juego");
-
-        boton_jugar.setText("Jugar juego");
-
-        boton_salir.setText("Salir");
+        boton_excel.setText("Generar Excel");
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nombre", "N. de veces jugado"
+                "Código de juego", "Código de jugador", "Fecha"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -69,9 +64,8 @@ public class Juego_Vista extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        boton_agregar_contenido.setText("Configuracion de contenidos");
-
-        boton_historial.setText("Historial de juegos");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Juegos jugados");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,23 +73,13 @@ public class Juego_Vista extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(boton_excel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(boton_agregar)
-                        .addGap(18, 18, 18)
-                        .addComponent(boton_borrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(boton_historial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boton_agregar_contenido)
-                        .addGap(18, 18, 18)
-                        .addComponent(boton_salir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(boton_jugar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(boton_regresar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -106,16 +90,11 @@ public class Juego_Vista extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(boton_jugar)
-                        .addGap(0, 196, Short.MAX_VALUE))
+                        .addComponent(boton_excel)
+                        .addGap(0, 318, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boton_agregar)
-                    .addComponent(boton_borrar)
-                    .addComponent(boton_salir)
-                    .addComponent(boton_agregar_contenido)
-                    .addComponent(boton_historial))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boton_regresar)
                 .addContainerGap())
         );
 
@@ -139,31 +118,27 @@ public class Juego_Vista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Juego_Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Juegos_Jugados_Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Juego_Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Juegos_Jugados_Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Juego_Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Juegos_Jugados_Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Juego_Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Juegos_Jugados_Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Juego_Vista().setVisible(true);
+                new Juegos_Jugados_Vista().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton boton_agregar;
-    public javax.swing.JButton boton_agregar_contenido;
-    public javax.swing.JButton boton_borrar;
-    public javax.swing.JButton boton_historial;
-    public javax.swing.JButton boton_jugar;
-    public javax.swing.JButton boton_salir;
+    public javax.swing.JButton boton_excel;
+    public javax.swing.JButton boton_regresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tabla;

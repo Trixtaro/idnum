@@ -3,7 +3,6 @@ package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelos.Contestacion;
@@ -60,10 +59,6 @@ public class Iniciar_Juego_Controlador implements ActionListener{
     public void actionPerformed(ActionEvent event) {
         
         if(event.getSource() == vista.boton_empezar){
-            
-            Jugador_Juego jugador_juego = new Jugador_Juego(jugador, juego, null);
-            
-            int contador = 0;
             
             Responder_Pregunta_Controlador responder_Pregunta_Controlador = new Responder_Pregunta_Controlador(jugador, juego, 0);
             responder_Pregunta_Controlador.iniciar();

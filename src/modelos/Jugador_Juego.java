@@ -2,10 +2,7 @@
 package modelos;
 
 import static idnum.Idnum.conexion;
-import java.io.FileInputStream;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 
 public class Jugador_Juego implements DatabaseAble{
     
@@ -59,6 +56,47 @@ public class Jugador_Juego implements DatabaseAble{
             return 0;
             
         }
+    }
+    
+    public static Jugador_Juego [] getJugador_Juegos(){
+        Jugador_Juego [] jugador_juegos = new Jugador_Juego[20];
+        
+        ResultSet rs;
+        
+        String sentencia = "SELECT id_jugador, id_juego, fecha FROM jugador_juego";
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+            
+            int contador = 0;
+            
+            while(rs.next()){
+      
+                Jugador jugador = new Jugador(rs.getInt("id_jugador"));
+                Juego juego = new Juego(rs.getInt("id_juego"));
+
+                jugador.consultarBD();
+
+                juego.consultarBD();
+
+                jugador_juegos[contador] = new Jugador_Juego(jugador, juego, null);
+                jugador_juegos[contador].consultarBD();
+
+                contador++;
+            }
+            
+            rs.close();
+            
+            conexion.cerrar_conexionBD();
+            
+            return jugador_juegos;
+        }catch(Exception ex){
+            System.out.println("Jugador_Juego - getJugador_Juegos: "+ex);
+        }
+        return null;
     }
     
     @Override

@@ -12,9 +12,21 @@ public class Jugador implements DatabaseAble{
     String nombre_ayudante;
     int edad;
     Usuario usuario;
+
+    public Jugador(int id_jugador) {
+        this.id_jugador = id_jugador;
+    }
     
     public Jugador(Usuario usuario){
         this.usuario = usuario;
+    }
+
+    public Jugador(int id_jugador, String grado, String nombre_jugador, String nombre_ayudante, int edad) {
+        this.id_jugador = id_jugador;
+        this.grado = grado;
+        this.nombre_jugador = nombre_jugador;
+        this.nombre_ayudante = nombre_ayudante;
+        this.edad = edad;
     }
 
     public Jugador(String grado, String nombre_jugador, String nombre_ayudante, int edad, Usuario usuario) {
@@ -39,8 +51,6 @@ public class Jugador implements DatabaseAble{
         String sentencia = "INSERT INTO jugador(grado, nombres, nombres_ayudante, edad, id_usuario) "
                 + "VALUES('"+getGrado()+"','"+getNombre_jugador()+"','"+getNombre_ayudante()+"',"
                 + "'"+getEdad()+"','"+getUsuario().getId_usuario()+"')";
-        
-        System.out.println(""+sentencia);
 
        try{
             
@@ -70,8 +80,18 @@ public class Jugador implements DatabaseAble{
 
     @Override
     public void consultarBD() {
+        
+        String sentencia;
        
-        String sentencia = "SELECT * FROM jugador WHERE id_usuario = '"+getUsuario().getId_usuario()+"'";
+        if(getUsuario() != null){
+            
+            sentencia = "SELECT * FROM jugador WHERE id_usuario = '"+getUsuario().getId_usuario()+"'";
+            
+        } else
+        
+            sentencia = "SELECT * FROM jugador WHERE id_jugador = '"+getId_jugador()+"'";
+        
+        System.out.println(sentencia);
         
         ResultSet rs;
         
@@ -94,7 +114,7 @@ public class Jugador implements DatabaseAble{
             conexion.cerrar_conexionBD();
 
         }catch(Exception ex){
-            System.out.println(""+ex);
+            System.out.println("Jugador - consultarbd: "+ex);
         }
         
     }

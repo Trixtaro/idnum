@@ -13,6 +13,10 @@ public class Juego implements DatabaseAble{
     Contenido contenido_3;
     
     int n_veces_jugado;
+    
+    public Juego(int id_juego){
+        this.id_juego = id_juego;
+    }
 
     public Juego(String nombre) {
         this.nombre = nombre;
@@ -60,7 +64,32 @@ public class Juego implements DatabaseAble{
 
     @Override
     public void consultarBD() {
+        String sentencia = "SELECT * FROM juego WHERE id_juego = '"+getId_juego()+"'"
+                + "OR nombre = '"+getNombre()+"'";
         
+        ResultSet rs;
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+           
+            if(rs.next()){
+                
+                this.setId_juego(rs.getInt("id_juego"));
+                this.setNombre(rs.getString("nombre"));
+                this.setContenido_1(new Contenido(rs.getString("contenido_1")));
+                this.setContenido_2(new Contenido(rs.getString("contenido_2")));
+                this.setContenido_3(new Contenido(rs.getString("contenido_3")));
+                
+            }
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println(""+ex);
+        }
     }
 
     public boolean isRegistered(){

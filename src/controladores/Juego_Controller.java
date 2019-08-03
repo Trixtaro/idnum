@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelos.Contenido;
 import modelos.Juego;
 import modelos.Jugador;
 import vistas.Juego_Vista;
@@ -29,6 +28,7 @@ public class Juego_Controller implements ActionListener{
         this.vista.boton_jugar.addActionListener(this);
         this.vista.boton_agregar_contenido.addActionListener(this);
         this.vista.boton_salir.addActionListener(this);
+        this.vista.boton_historial.addActionListener(this);
         
         this.vista.boton_jugar.setEnabled(false);
         
@@ -50,6 +50,7 @@ public class Juego_Controller implements ActionListener{
         this.vista.boton_agregar.setEnabled(false);
         this.vista.boton_borrar.setEnabled(false);
         this.vista.boton_agregar_contenido.setEnabled(false);
+        this.vista.boton_historial.setEnabled(false);
         
     }
     
@@ -105,6 +106,15 @@ public class Juego_Controller implements ActionListener{
             
             
         } else
+            
+        if(event.getSource() == vista.boton_historial){
+    
+            vista.setVisible(false);
+            
+            Juegos_Jugados_Controller juegos_Jugados_Controller = new Juegos_Jugados_Controller();
+            juegos_Jugados_Controller.iniciar();
+            
+        } else 
         
         if(event.getSource() == vista.boton_salir){
         
