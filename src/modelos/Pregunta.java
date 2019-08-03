@@ -207,6 +207,50 @@ public class Pregunta implements DatabaseAble{
     @Override
     public void consultarBD() {
         
+        ResultSet rs;
+        
+        String sentencia = "SELECT id_pregunta, imagen, literal_1, literal_2, literal_3, literal_4, "
+                + "tipo, respuesta, id_contenido FROM pregunta WHERE id_pregunta = '"+getId_pregunta()+"'";
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+            
+            int contador = 0;
+            
+            if(rs.next()){
+                
+                Literal literal_1 = new Literal(rs.getInt("literal_1"));
+                Literal literal_2 = new Literal(rs.getInt("literal_2"));
+                Literal literal_3 = new Literal(rs.getInt("literal_3"));
+                Literal literal_4 = new Literal(rs.getInt("literal_4"));
+                
+                literal_1.consultarBD();
+                literal_2.consultarBD();
+                literal_3.consultarBD();
+                literal_4.consultarBD();
+                
+                setId_pregunta(rs.getInt("id_pregunta")); 
+                setImagen(rs.getBlob("imagen"));
+                setLiteral_A(literal_1);
+                setLiteral_B(literal_2);
+                setLiteral_C(literal_3);
+                setLiteral_D(literal_4);
+                setRespuesta(rs.getString("respuesta").charAt(0));
+                setTipo(rs.getString("tipo"));
+
+            }
+            
+            rs.close();
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println("Pregunta - consultarbd: "+ex);
+        }
+        
     }
 
     public int getId_pregunta() {

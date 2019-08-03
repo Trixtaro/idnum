@@ -11,7 +11,7 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        etiqueta_titulo = new javax.swing.JLabel();
         etiqueta_pregunta = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         etiqueta_a = new javax.swing.JLabel();
@@ -25,9 +25,9 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Identifique el número con la imagen");
+        etiqueta_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiqueta_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        etiqueta_titulo.setText("Identifique el número con la imagen");
 
         etiqueta_pregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etiqueta_pregunta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -35,13 +35,22 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("A");
 
+        etiqueta_a.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        etiqueta_a.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        etiqueta_a.setText("1");
         etiqueta_a.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel5.setText("B");
 
+        etiqueta_b.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        etiqueta_b.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        etiqueta_b.setText("2");
         etiqueta_b.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        etiqueta_d.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        etiqueta_d.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        etiqueta_d.setText("4");
         etiqueta_d.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -50,6 +59,9 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel9.setText("C");
 
+        etiqueta_c.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        etiqueta_c.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        etiqueta_c.setText("3");
         etiqueta_c.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         boton_salir.setText("SALIR DE LA PRUEBA");
@@ -81,7 +93,7 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel8))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                            .addComponent(etiqueta_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(etiqueta_a, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,7 +107,7 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(etiqueta_titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(etiqueta_pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -161,7 +173,7 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
     public javax.swing.JLabel etiqueta_c;
     public javax.swing.JLabel etiqueta_d;
     public javax.swing.JLabel etiqueta_pregunta;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel etiqueta_titulo;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;

@@ -1,10 +1,8 @@
 
 package controladores;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Blob;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -65,7 +63,7 @@ public class Pregunta_Literal_Controlador implements ActionListener{
             modelo.addColumn("Código");
             modelo.addColumn("Imagen");
         
-            vista.tabla.setRowHeight(200);
+            vista.tabla.setRowHeight(100);
             
             vista.tabla.getColumnModel().getColumn(0).setPreferredWidth(64);
             vista.tabla.getColumnModel().getColumn(1).setPreferredWidth(480-64-1);
@@ -74,25 +72,65 @@ public class Pregunta_Literal_Controlador implements ActionListener{
             
             int contador = 0;
         
-        Literal [] literales = Literal.getLiterales();
+            Literal [] literales = Literal.getLiterales();
         
-        while(literales[contador] != null){
+            while(literales[contador] != null){
             
             
-            if(literales[contador].getTipo_literal().equals("IMAGEN"))
+                if(literales[contador].getTipo_literal().equals("IMAGEN"))
                 
-                modelo.addRow(new Object[]{ 
-                    literales[contador].getId_literal(), 
-                    literales[contador].getImageAsIcon()
-                });
+                    modelo.addRow(new Object[]{ 
+                        literales[contador].getId_literal(), 
+                        literales[contador].getImageAsIcon()
+                    });
        
-            contador++;            
-        }
+                contador++;            
+            }
         
             
-        } else if(pregunta.getTipo().equals("ORACION")){
+        } else if(tipo_literal.equals("ORACION")){
             
+            DefaultTableModel modelo = new DefaultTableModel(){
             
+                @Override 
+                public Class getColumnClass(int column){
+                    switch(column) {
+                        case 0: return String.class;
+                        case 1: return String.class;
+                        default: return Object.class;
+                    }
+                }
+            };
+            
+            vista.tabla.setModel(modelo);
+            
+            modelo.addColumn("Código");
+            modelo.addColumn("Oracion");
+        
+            vista.tabla.setRowHeight(100);
+            
+            vista.tabla.getColumnModel().getColumn(0).setPreferredWidth(64);
+            vista.tabla.getColumnModel().getColumn(1).setPreferredWidth(480-64-1);
+            
+            modelo.setRowCount(0);
+            
+            int contador = 0;
+        
+            Literal [] literales = Literal.getLiterales();
+        
+            while(literales[contador] != null){
+                
+                System.out.println("GGG");
+            
+                if(literales[contador].getTipo_literal().equals("CARACTER"))
+                
+                    modelo.addRow(new Object[]{ 
+                        literales[contador].getId_literal(), 
+                        literales[contador].getCaracter()
+                    });
+       
+                contador++;            
+            }
             
         }
         

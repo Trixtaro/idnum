@@ -3,8 +3,6 @@ package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -17,14 +15,18 @@ import vistas.Pregunta_Vista;
 
 public class Pregunta_Controlador implements ActionListener{
     
+    public static Pregunta_Controlador pregunta_Controlador;
+    
     Contenido contenido;
     
     Pregunta_Vista vista;
 
     public Pregunta_Controlador(Contenido contenido){
+        
+        pregunta_Controlador = this;
 
         this.contenido = contenido;
-        this.vista= new vistas.Pregunta_Vista();
+        this.vista = new vistas.Pregunta_Vista();
         this.vista.boton_agregar.addActionListener(this);
         this.vista.boton_eliminar.addActionListener(this);
         this.vista.boton_seleccionar.addActionListener(this);
@@ -89,6 +91,27 @@ public class Pregunta_Controlador implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
+        if(e.getSource() == vista.boton_seleccionar){
+            
+            vista.setVisible(false);
+            
+            int codigo;
+            
+            try {
+                codigo = (int) vista.tabla_pregunta.getValueAt(vista.tabla_pregunta.getSelectedRow(), 0);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(vista, "Debe seleccionar una pregunta", "Aviso", JOptionPane.WARNING_MESSAGE);
+               return ;
+            }
+            
+            Pregunta pregunta = new Pregunta(codigo);
+            pregunta.consultarBD();
+        
+            Ver_Literales_Controlador ver_Literales_Controlador = new Ver_Literales_Controlador(pregunta);
+            ver_Literales_Controlador.iniciar();
+            
+        } else
+        
         if(e.getSource() == vista.boton_retroceder){
         
             vista.dispose();
@@ -127,39 +150,33 @@ public class Pregunta_Controlador implements ActionListener{
                         vista.setVisible(false);
                         
                     }else if(tipo_literal.equals("ORACION")){
-                        String nombre_literal = JOptionPane.showInputDialog(vista, "Ingrese el nuevo literal.", "Agregar literal", JOptionPane.DEFAULT_OPTION);
-            
-                        if(nombre_literal.equals("")){
-                        JOptionPane.showMessageDialog(vista, "Debe escribir un nuevo literal.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                        return;
-                        }       
                         
-                        Literal nuevo_literal = new Literal(nombre_literal, false);
-                        System.out.println(""+nuevo_literal.getCaracter());
-                        //nuevo_literal.ingresarBD();
-
-                        //llenar_tabla();
+                        Pregunta_Literal_Controlador pregunta_Literal_Controlador = new Pregunta_Literal_Controlador(pregunta, this, "ORACION");
+                        pregunta_Literal_Controlador.iniciar();
+                        vista.setVisible(false);
                     
-                        }
+                    }
                     
                 } else if (opcion_seleccionada.equals("ABIERTA")){
                     
                 }
                 
             }
-        }else if(e.getSource() == vista.boton_eliminar){
+        }else 
+            
+        if(e.getSource() == vista.boton_eliminar){
             int codigo;
             try {
                 codigo = (int) vista.tabla_pregunta.getValueAt(vista.tabla_pregunta.getSelectedRow(), 0);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(vista, "Debe seleccionar un contenido", "Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Debe seleccionar una pregunta", "Aviso", JOptionPane.WARNING_MESSAGE);
                return ;
             }
             
             Pregunta pregunta = new Pregunta(codigo);
             
             if(pregunta.borrarBD() == false){
-                JOptionPane.showMessageDialog(null, "No se puede borrar esta contenido.", "Borrar contenido", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se puede borrar esta pregunta.", "Borrar pregunta", JOptionPane.WARNING_MESSAGE);
                 return;
             }
             

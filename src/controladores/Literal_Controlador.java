@@ -69,6 +69,15 @@ public class Literal_Controlador implements ActionListener, ItemListener{
                     
                 }
                 
+            } else {
+                
+                String oracion = JOptionPane.showInputDialog(vista, "Ingrese el literal:", "Nuevo literal");
+                
+                Literal literal = new Literal(oracion, false);
+                literal.ingresarBD();
+                
+                llenar_tabla();
+                
             }
             
         } else

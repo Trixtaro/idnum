@@ -5,6 +5,7 @@ import static idnum.Idnum.conexion;
 import java.io.FileInputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class Jugador_Juego implements DatabaseAble{
     
@@ -16,6 +17,48 @@ public class Jugador_Juego implements DatabaseAble{
         this.jugador = jugador;
         this.juego = juego;
         this.fecha = fecha;
+    }
+    
+    public int getAciertos(){
+        
+        String sentencia = "SELECT COUNT(*) AS respuestas_correctas "
+                + "FROM contestacion, pregunta, literal, jugador_juego "
+                + "WHERE jugador_juego.fecha = contestacion.fecha AND pregunta.id_pregunta = contestacion.id_pregunta\n "
+                + "AND jugador_juego.fecha = '"+getFecha()+"'"
+                + "AND  ((pregunta.literal_1 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='A')\n"
+                +"OR  (pregunta.literal_2 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='B')\n"
+                +"OR  (pregunta.literal_3 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='C')\n"
+                +"OR  (pregunta.literal_4 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='D') )";
+        
+        ResultSet rs;
+        
+        try {
+            
+            idnum.Idnum.conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+            
+            int valor;
+            
+            if(rs.next()){
+                
+                valor = rs.getInt("respuestas_correctas");
+                
+            } else
+                
+                valor = 0;
+                
+            
+            idnum.Idnum.conexion.cerrar_conexionBD();
+            
+            return valor;
+            
+        } catch (Exception ex) {
+            
+            System.out.println("Jugador_Juego - getAciertos: "+ex);
+            return 0;
+            
+        }
     }
     
     @Override
