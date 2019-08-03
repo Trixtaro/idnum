@@ -25,8 +25,8 @@ public class Administrador implements DatabaseAble{
     }
 
     @Override
-    public void borrarBD() {
-        
+    public boolean borrarBD() {
+        return false;
     }
 
     @Override

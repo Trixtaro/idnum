@@ -15,25 +15,21 @@ import modelos.Literal;
 import modelos.Pregunta;
 import vistas.Pregunta_Vista;
 
-public class Pregunta_Controlador implements ActionListener, WindowListener{
+public class Pregunta_Controlador implements ActionListener{
     
     Contenido contenido;
     
-    Contenido_Controlador controlador_padre;
-    
     Pregunta_Vista vista;
 
-    public Pregunta_Controlador(Contenido contenido, Contenido_Controlador controlador_padre){
-        
-        this.controlador_padre = controlador_padre;
+    public Pregunta_Controlador(Contenido contenido){
+
         this.contenido = contenido;
         this.vista= new vistas.Pregunta_Vista();
         this.vista.boton_agregar.addActionListener(this);
         this.vista.boton_eliminar.addActionListener(this);
         this.vista.boton_seleccionar.addActionListener(this);
         this.vista.boton_retroceder.addActionListener(this);
-        
-        this.vista.addWindowListener(this);
+
     }   
     
     
@@ -95,9 +91,9 @@ public class Pregunta_Controlador implements ActionListener, WindowListener{
         
         if(e.getSource() == vista.boton_retroceder){
         
-            vista.setVisible(false);
-            controlador_padre.vista.setVisible(true);
-            controlador_padre.llenar_tabla();
+            vista.dispose();
+            Contenido_Controlador.contenido_Controlador.vista.setVisible(true);
+            Contenido_Controlador.contenido_Controlador.llenar_tabla();
         
         } else if (e.getSource() == vista.boton_agregar){
                     
@@ -138,7 +134,7 @@ public class Pregunta_Controlador implements ActionListener, WindowListener{
                         return;
                         }       
                         
-                        Literal nuevo_literal = new Literal(nombre_literal);
+                        Literal nuevo_literal = new Literal(nombre_literal, false);
                         System.out.println(""+nuevo_literal.getCaracter());
                         //nuevo_literal.ingresarBD();
 
@@ -162,7 +158,8 @@ public class Pregunta_Controlador implements ActionListener, WindowListener{
             
             Pregunta pregunta = new Pregunta(codigo);
             
-            pregunta.borrarBD();
+            if(pregunta.borrarBD() == false)
+                return;
             
             DefaultTableModel modelo = (DefaultTableModel) vista.tabla_pregunta.getModel();
             
@@ -171,39 +168,5 @@ public class Pregunta_Controlador implements ActionListener, WindowListener{
         
     }
 
-    @Override
-    public void windowOpened(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-        controlador_padre.vista.setVisible(true);
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-        
-    }
     
 }

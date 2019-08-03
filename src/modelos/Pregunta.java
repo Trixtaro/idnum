@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Pregunta implements DatabaseAble{
     
@@ -184,7 +185,7 @@ public class Pregunta implements DatabaseAble{
     }
 
     @Override
-    public void borrarBD() {
+    public boolean borrarBD() {
         String sentencia = "DELETE FROM pregunta WHERE id_pregunta="+getId_pregunta()+"";
        
        try{
@@ -194,9 +195,13 @@ public class Pregunta implements DatabaseAble{
             idnum.Idnum.conexion.actualizaBD(sentencia);
             
             conexion.cerrar_conexionBD();
+            
+            return true;
 
         }catch(Exception ex){
-            System.out.println(""+ex);
+            JOptionPane.showMessageDialog(null, "No se puede borrar esta contenido.", "Borrar contenido", JOptionPane.WARNING_MESSAGE);
+            System.out.println("Pregunta - borrarbd: "+ex);
+            return false;
         }
     }
 

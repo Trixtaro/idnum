@@ -10,15 +10,21 @@ import vistas.Contenido_Vista;
 
 public class Contenido_Controlador implements ActionListener{
     
+    public static Contenido_Controlador contenido_Controlador;
+    
     Contenido_Vista vista;
     
     public Contenido_Controlador(){
         
         this.vista = new Contenido_Vista();
+        
+        contenido_Controlador = this;
+        
         this.vista.boton_agregar.addActionListener(this);
         this.vista.boton_borrar.addActionListener(this);
         this.vista.boton_seleccionar.addActionListener(this);
         this.vista.boton_salir.addActionListener(this);
+        this.vista.boton_configurar_literal.addActionListener(this);
         
     }
     
@@ -85,7 +91,8 @@ public class Contenido_Controlador implements ActionListener{
             
             Contenido contenido = new Contenido(codigo);
             
-            contenido.borrarBD();
+            if(contenido.borrarBD() == false)
+                return;
             
             DefaultTableModel modelo = (DefaultTableModel) vista.tabla_contenidos.getModel();
             
@@ -108,12 +115,21 @@ public class Contenido_Controlador implements ActionListener{
             Contenido contenido = new Contenido(codigo);
             contenido.consultarBD();
                         
-            Pregunta_Controlador pregunta_Controlador = new Pregunta_Controlador(contenido, this);
+            Pregunta_Controlador pregunta_Controlador = new Pregunta_Controlador(contenido);
             pregunta_Controlador.iniciar();
             
             vista.setVisible(false);
             
-        }
+        } else
+            
+        if(e.getSource() == vista.boton_configurar_literal){
+        
+            Literal_Controlador literal_Controlador = new Literal_Controlador();
+            literal_Controlador.iniciar();
+            
+            vista.setVisible(false);
+            
+        } else
         
         if(e.getSource()== vista.boton_salir){
             vista.dispose();

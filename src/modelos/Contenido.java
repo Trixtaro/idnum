@@ -3,6 +3,7 @@ package modelos;
 
 import static idnum.Idnum.conexion;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class Contenido implements DatabaseAble{
     int id_contenido;
@@ -107,7 +108,7 @@ public class Contenido implements DatabaseAble{
     }
 
     @Override
-    public void borrarBD() {
+    public boolean borrarBD() {
         
         String sentencia = "DELETE FROM contenido WHERE id_contenido="+getId_contenido()+"";
        
@@ -115,12 +116,17 @@ public class Contenido implements DatabaseAble{
             
             conexion.conectaBD();
             
+            System.out.println("Hola");
+            
             idnum.Idnum.conexion.actualizaBD(sentencia);
             
             conexion.cerrar_conexionBD();
+            
+            return true;
 
         }catch(Exception ex){
-            System.out.println(""+ex);
+            JOptionPane.showMessageDialog(null, "No se puede borrar este contenido.", "Borrar contenido", JOptionPane.WARNING_MESSAGE);
+            return false;
         }
         
     }

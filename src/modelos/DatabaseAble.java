@@ -7,7 +7,7 @@ public interface DatabaseAble {
     
     public void actualizarBD();
     
-    public void borrarBD();
+    public boolean borrarBD();
     
     public void consultarBD();
 }

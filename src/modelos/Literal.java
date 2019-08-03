@@ -1,11 +1,14 @@
 
 package modelos;
 
-import java.sql.Blob;
 import static idnum.Idnum.conexion;
+import java.sql.Blob;
 import java.awt.Image;
+import java.io.FileInputStream;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Literal implements DatabaseAble{
      
@@ -16,23 +19,31 @@ public class Literal implements DatabaseAble{
     String caracter;
     
     Blob imagen;
+    
+    String ruta;
 
     
     public Literal(int id_literal) {
         this.id_literal = id_literal;
     }
+
     
-    // Constructor para preguntas caracter
-    public Literal(String caracter) {
-        this.tipo_literal = "CARACTER";
-        this.caracter = caracter;
+    // Constructor para ingresos
+    public Literal(String valor, boolean isImage) {
+        if (isImage){
+        
+            this.ruta = valor;
+            this.tipo_literal = "IMAGEN";
+            
+        } else {
+            
+            this.caracter = valor;
+            this.tipo_literal = "CARACTER";
+            
+        }
+
     }
-    // Constructor para preguntas imagenes
-    public Literal(Blob imagen) {
-        this.tipo_literal = "IMAGEN";
-        this.imagen = imagen;
-    }
-    
+
     public Literal(int id_literal, Blob imagen){
         this.id_literal = id_literal;
         this.imagen = imagen;
@@ -51,7 +62,7 @@ public class Literal implements DatabaseAble{
         
         ResultSet rs;
         
-        String sentencia = "SELECT id_literal as Codigo, imagen FROM literal";
+        String sentencia = "SELECT id_literal as Codigo, imagen, caracter, tipo FROM literal";
         
         try{
             
@@ -62,7 +73,11 @@ public class Literal implements DatabaseAble{
             int contador = 0;
             
             while(rs.next()){
-                auxiliar = new Literal(rs.getInt("Codigo"), rs.getBlob("imagen"));
+                
+                if(rs.getString("tipo").equals("IMAGEN"))
+                    auxiliar = new Literal(rs.getInt("Codigo"), rs.getBlob("imagen"));
+                else
+                    auxiliar = new Literal(rs.getInt("Codigo"), rs.getString("caracter"));
                 literales[contador] = auxiliar;
                 contador++;
             }
@@ -73,7 +88,7 @@ public class Literal implements DatabaseAble{
             
             return literales;
         }catch(Exception ex){
-            System.out.println(""+ex);
+            System.out.println("Literal - getLiterales: "+ex);
         }
         return null;
     
@@ -101,6 +116,37 @@ public class Literal implements DatabaseAble{
     @Override
     public void ingresarBD() {
     
+        String sentencia;
+        
+        if(caracter != null)
+            sentencia = "INSERT INTO literal(tipo, caracter) "
+                + "VALUES('"+getTipo_literal()+"','"+getCaracter()+"')";
+        else
+            sentencia = "INSERT INTO literal(tipo, imagen) "
+                + "VALUES('"+getTipo_literal()+"',?)";
+
+       try{
+            
+            conexion.conectaBD();
+            if(caracter != null){
+                
+                idnum.Idnum.conexion.actualizaBD(sentencia);
+                
+            } else {
+            
+                PreparedStatement statement = idnum.Idnum.conexion.get_conexion().prepareStatement(sentencia);
+            
+                statement.setBlob(1, new FileInputStream(ruta));
+                statement.executeUpdate();
+                
+            }
+
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println("Literal - ingresarbd: "+ex);
+        }
+        
     }
 
     @Override
@@ -109,8 +155,24 @@ public class Literal implements DatabaseAble{
     }
 
     @Override
-    public void borrarBD() {
-        
+    public boolean borrarBD() {
+        String sentencia = "DELETE FROM literal WHERE id_literal ="+getId_literal()+"";
+       
+       try{
+            
+            conexion.conectaBD();
+            
+            idnum.Idnum.conexion.actualizaBD(sentencia);
+            
+            conexion.cerrar_conexionBD();
+            
+            return true;
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "No se puede borrar este literal.", "Borrar literal", JOptionPane.WARNING_MESSAGE);
+            System.out.println("Literal - borrarbd: "+ex);
+            return false;
+        }
     }
 
     @Override
@@ -172,6 +234,14 @@ public class Literal implements DatabaseAble{
 
     public void setImagen(Blob imagen) {
         this.imagen = imagen;
+    }
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
     }
     
 }
