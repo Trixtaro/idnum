@@ -30,6 +30,8 @@ public class Jugador_Juego implements DatabaseAble{
             
             conexion.actualizaBD(sentencia);
             
+            System.out.println("Llego");
+            
             conexion.cerrar_conexionBD();
 
         }catch(Exception ex){

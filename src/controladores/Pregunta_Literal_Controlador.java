@@ -79,10 +79,12 @@ public class Pregunta_Literal_Controlador implements ActionListener{
         while(literales[contador] != null){
             
             
-            modelo.addRow(new Object[]{ 
-                literales[contador].getId_literal(), 
-                literales[contador].getImageAsIcon()
-            });
+            if(literales[contador].getTipo_literal().equals("IMAGEN"))
+                
+                modelo.addRow(new Object[]{ 
+                    literales[contador].getId_literal(), 
+                    literales[contador].getImageAsIcon()
+                });
        
             contador++;            
         }

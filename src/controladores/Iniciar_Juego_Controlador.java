@@ -3,7 +3,9 @@ package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelos.Contestacion;
 import modelos.Juego;
 import modelos.Jugador;
@@ -173,6 +175,37 @@ public class Iniciar_Juego_Controlador implements ActionListener{
             
             contestaciones.get(i).setFecha(jugador_Juego.getFecha());
             contestaciones.get(i).ingresarBD();
+            
+        }
+        
+        String sentencia = "SELECT COUNT(*) AS respuestas_correctas "
+                + "FROM contestacion, pregunta, literal, jugador_juego "
+                + "WHERE jugador_juego.fecha = contestacion.fecha AND pregunta.id_pregunta = contestacion.id_pregunta\n "
+                + "AND jugador_juego.fecha = '"+jugador_Juego.getFecha()+"'"
+                + "AND  ((pregunta.literal_1 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='A')\n"
+                +"OR  (pregunta.literal_2 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='B')\n"
+                +"OR  (pregunta.literal_3 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='C')\n"
+                +"OR  (pregunta.literal_4 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='D') )";
+        
+        ResultSet rs;
+        
+        try {
+            
+            idnum.Idnum.conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+            
+            if(rs.next()){
+                
+                JOptionPane.showMessageDialog(vista, jugador.getNombre_jugador()+"\nRespuestas correctas: "+rs.getString("respuestas_correctas")+" de "+max_preguntas, "Resultado final", JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            
+            idnum.Idnum.conexion.cerrar_conexionBD();
+            
+        } catch (Exception ex) {
+            
+            
             
         }
         
