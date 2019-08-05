@@ -66,6 +66,8 @@ public class Juego_Controller implements ActionListener{
         vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         vista.setVisible(true);
         
+        vista.boton_borrar.setVisible(false);
+        
         llenar_tabla();
         
     }
