@@ -1,6 +1,9 @@
 
 package vistas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 public class Responder_Pregunta_Vista extends javax.swing.JFrame {
 
     public Responder_Pregunta_Vista() {
@@ -24,6 +27,7 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
         boton_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         etiqueta_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiqueta_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -37,7 +41,6 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
 
         etiqueta_a.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         etiqueta_a.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiqueta_a.setText("1");
         etiqueta_a.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -45,12 +48,10 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
 
         etiqueta_b.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         etiqueta_b.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiqueta_b.setText("2");
         etiqueta_b.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         etiqueta_d.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         etiqueta_d.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiqueta_d.setText("4");
         etiqueta_d.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -61,7 +62,6 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
 
         etiqueta_c.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         etiqueta_c.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiqueta_c.setText("3");
         etiqueta_c.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         boton_salir.setText("SALIR DE LA PRUEBA");
@@ -164,6 +164,12 @@ public class Responder_Pregunta_Vista extends javax.swing.JFrame {
                 new Responder_Pregunta_Vista().setVisible(true);
             }
         });
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icono.jpeg"));
+        return retValue;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,6 +1,9 @@
 
 package vistas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 public class Nuevo_Jugador_Vista extends javax.swing.JFrame {
 
     public Nuevo_Jugador_Vista() {
@@ -24,6 +27,7 @@ public class Nuevo_Jugador_Vista extends javax.swing.JFrame {
         boton_registrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -111,6 +115,12 @@ public class Nuevo_Jugador_Vista extends javax.swing.JFrame {
                 new Nuevo_Jugador_Vista().setVisible(true);
             }
         });
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icono.jpeg"));
+        return retValue;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

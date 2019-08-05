@@ -1,6 +1,9 @@
 
 package vistas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 public class Literal_Vista extends javax.swing.JFrame {
 
     public Literal_Vista() {
@@ -21,6 +24,7 @@ public class Literal_Vista extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         boton_retroceder.setText("Retroceder");
 
@@ -139,6 +143,12 @@ public class Literal_Vista extends javax.swing.JFrame {
                 new Literal_Vista().setVisible(true);
             }
         });
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icono.jpeg"));
+        return retValue;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

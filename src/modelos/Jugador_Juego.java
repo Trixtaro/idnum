@@ -58,6 +58,61 @@ public class Jugador_Juego implements DatabaseAble{
         }
     }
     
+    public String [][] getRespuestasExamen(){
+        
+        String respuestas [][] = new String[100][3];
+        
+        String sentencia = "SELECT contestacion_objetiva AS Respuesta, IF (pregunta.respuesta= contestacion.contestacion_objetiva,'Correcta','Incorrecta') AS Resultado FROM contestacion, pregunta, literal\n" +
+            "WHERE contestacion.id_pregunta = pregunta.id_pregunta\n" +
+            "AND contestacion.fecha = '"+ getFecha() +"'" +
+            "AND  ((pregunta.literal_1 = literal.id_literal AND contestacion.contestacion_objetiva='A')\n" +
+            "OR  (pregunta.literal_2 = literal.id_literal AND contestacion.contestacion_objetiva='B')\n" +
+            "OR  (pregunta.literal_3 = literal.id_literal AND contestacion.contestacion_objetiva='C')\n" +
+            "OR  (pregunta.literal_4 = literal.id_literal AND contestacion.contestacion_objetiva='D'))";
+        
+        ResultSet rs;
+        
+        try {
+            
+            idnum.Idnum.conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+            
+            int contador = 0;
+            
+            while(rs.next()){
+                
+                if(contador == 0){
+                    
+                    respuestas[contador][0] = "";
+                    respuestas[contador][1] = "Respuesta";
+                    respuestas[contador][2] = "Resultado";
+                    
+                } else {
+                    
+                    respuestas[contador][0] = ""+contador;
+                    respuestas[contador][1] = rs.getString("Respuesta");
+                    respuestas[contador][2] = rs.getString("Resultado");
+                    
+                }
+                
+                contador++;
+                
+            }
+                     
+            idnum.Idnum.conexion.cerrar_conexionBD();
+            
+            return respuestas;
+            
+        } catch (Exception ex) {
+            
+            System.out.println("Jugador_Juego - getAciertos: "+ex);
+            return null;
+            
+        }
+        
+    }
+    
     public static Jugador_Juego [] getJugador_Juegos(){
         Jugador_Juego [] jugador_juegos = new Jugador_Juego[20];
         
@@ -149,6 +204,41 @@ public class Jugador_Juego implements DatabaseAble{
                 
                 this.setFecha(rs.getString("fecha"));
                 
+            }
+            
+            conexion.cerrar_conexionBD();
+
+        }catch(Exception ex){
+            System.out.println("Jugador_Juego - consultar: "+ex);
+        }
+        
+    }
+    
+    public void consultarBD(String fecha) {
+        
+        String sentencia = "SELECT * FROM jugador_juego WHERE id_jugador = '"+getJugador().getId_jugador()+"'"
+                + "AND id_juego = '"+getJuego().getId_juego()+"' AND fecha = '"+fecha+"' ORDER BY fecha DESC LIMIT 1";
+        
+        ResultSet rs;
+        
+        try{
+            
+            conexion.conectaBD();
+            
+            rs = idnum.Idnum.conexion.consultaBD(sentencia);
+           
+            if(rs.next()){
+                
+                Jugador jugador_aux = new Jugador(rs.getInt("id_jugador"));
+                Juego juego_aux = new Juego(rs.getInt("id_juego"));
+
+                jugador_aux.consultarBD();
+
+                juego_aux.consultarBD();
+                
+                this.setJugador(jugador_aux);
+                this.setJuego(juego_aux);
+    
             }
             
             conexion.cerrar_conexionBD();

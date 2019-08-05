@@ -1,6 +1,9 @@
 
 package vistas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 public class Contenido_Vista extends javax.swing.JFrame {
 
     public Contenido_Vista() {
@@ -21,6 +24,7 @@ public class Contenido_Vista extends javax.swing.JFrame {
         boton_configurar_literal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         tabla_contenidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,6 +115,12 @@ public class Contenido_Vista extends javax.swing.JFrame {
                 new Contenido_Vista().setVisible(true);
             }
         });
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icono.jpeg"));
+        return retValue;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

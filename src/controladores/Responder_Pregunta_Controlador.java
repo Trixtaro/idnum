@@ -58,10 +58,21 @@ public class Responder_Pregunta_Controlador implements ActionListener, MouseList
         
         vista.etiqueta_pregunta.setIcon(getPregunta().getImageAsIcon());
         
-        vista.etiqueta_a.setIcon(pregunta.getLiteral_A().getImageAsIcon());
-        vista.etiqueta_b.setIcon(pregunta.getLiteral_B().getImageAsIcon());
-        vista.etiqueta_c.setIcon(pregunta.getLiteral_C().getImageAsIcon());
-        vista.etiqueta_d.setIcon(pregunta.getLiteral_D().getImageAsIcon());
+        if(pregunta.getTipo().equals("IMAGEN")){
+            
+            this.vista.etiqueta_a.setIcon(pregunta.getLiteral_A().getImageAsIcon());
+            this.vista.etiqueta_b.setIcon(pregunta.getLiteral_B().getImageAsIcon());
+            this.vista.etiqueta_c.setIcon(pregunta.getLiteral_C().getImageAsIcon());
+            this.vista.etiqueta_d.setIcon(pregunta.getLiteral_D().getImageAsIcon());
+            
+        } else {
+            
+            this.vista.etiqueta_a.setText(pregunta.getLiteral_A().getCaracter());
+            this.vista.etiqueta_b.setText(pregunta.getLiteral_B().getCaracter());
+            this.vista.etiqueta_c.setText(pregunta.getLiteral_C().getCaracter());
+            this.vista.etiqueta_d.setText(pregunta.getLiteral_D().getCaracter());
+            
+        }
         
         vista.setLocationRelativeTo(null);
         
