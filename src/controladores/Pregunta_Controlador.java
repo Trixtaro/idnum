@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -9,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelos.Contenido;
-import modelos.Literal;
 import modelos.Pregunta;
 import vistas.Pregunta_Vista;
 
@@ -40,6 +40,7 @@ public class Pregunta_Controlador implements ActionListener{
         vista.etiqueta_contenido.setText(contenido.getNombre_contenido());
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         
         DefaultTableModel modelo = new DefaultTableModel(){
             

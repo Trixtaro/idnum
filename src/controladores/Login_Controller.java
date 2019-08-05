@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -36,6 +37,7 @@ public class Login_Controller implements ActionListener, KeyListener{
     public void iniciar(){
         this.vista.setTitle("Sistema de identificación de numeros");
         this.vista.setLocationRelativeTo(null);
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         this.vista.setVisible(true);
     }
 

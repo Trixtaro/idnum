@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import modelos.Pregunta;
@@ -27,6 +28,7 @@ public class Ver_Literales_Controlador implements ActionListener{
         this.vista.setTitle("Literales");
         
         this.vista.setLocationRelativeTo(null);
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         
         this.vista.etiqueta_titulo.setText("Literales de la pregunta");
         this.vista.boton_salir.setText("REGRESAR");

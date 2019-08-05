@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -36,7 +37,8 @@ public class Pregunta_Literal_Controlador implements ActionListener{
     public void iniciar(){
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
-
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
+        
         actualizarInterfaz();
         
         llenar_tabla();

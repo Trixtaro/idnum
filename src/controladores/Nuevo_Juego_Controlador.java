@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -24,6 +25,7 @@ public class Nuevo_Juego_Controlador implements ActionListener{
         
         vista.setTitle("Nuevo Juego");
         vista.setLocationRelativeTo(null);
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         vista.setVisible(true);
         
         llenar_contenidos();

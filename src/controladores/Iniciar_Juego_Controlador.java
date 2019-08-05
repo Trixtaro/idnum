@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class Iniciar_Juego_Controlador implements ActionListener{
         this.vista.etiqueta_n_preguntas.setText(0+" / "+max_preguntas);
         this.vista.setLocationRelativeTo(null);
         this.vista.etiqueta_nombre_juego.setText("JUEGO "+juego.getNombre());
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         this.vista.setVisible(true);
         
     }

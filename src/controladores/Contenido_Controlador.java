@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -32,6 +33,7 @@ public class Contenido_Controlador implements ActionListener{
         vista.setTitle("Contenidos");
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         llenar_tabla();
     }
     

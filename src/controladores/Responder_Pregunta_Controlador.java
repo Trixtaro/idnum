@@ -1,12 +1,12 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
-import modelos.Contenido;
 import modelos.Contestacion;
 import modelos.Juego;
 import modelos.Jugador;
@@ -75,7 +75,7 @@ public class Responder_Pregunta_Controlador implements ActionListener, MouseList
         }
         
         vista.setLocationRelativeTo(null);
-        
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         vista.setVisible(true);
         
     }

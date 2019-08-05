@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -29,7 +30,7 @@ public class Juegos_Jugados_Controller implements ActionListener{
         this.vista.setTitle("Historial de juegos");
         
         this.vista.setLocationRelativeTo(null);
-        
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         this.vista.setVisible(true);
         
         llenar_tabla();

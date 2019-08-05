@@ -1,6 +1,7 @@
 
 package controladores;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -36,6 +37,7 @@ public class Nuevo_Jugador_Controlador implements ActionListener, KeyListener{
         
         vista.setTitle("Nuevo jugador");
         vista.setLocationRelativeTo(null);
+        vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
         vista.setVisible(true);
         
     }
