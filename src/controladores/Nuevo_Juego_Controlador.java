@@ -34,6 +34,19 @@ public class Nuevo_Juego_Controlador implements ActionListener{
         
         if(event.getSource() == vista.boton_agregar){
             
+            if(vista.combo_primer_contenido.getSelectedItem().equals(
+                    vista.combo_segundo_contenido.getSelectedItem()
+            ) || vista.combo_primer_contenido.getSelectedItem().equals(
+                    vista.combo_tercer_contenido.getSelectedItem()
+            ) || vista.combo_segundo_contenido.getSelectedItem().equals(
+                    vista.combo_tercer_contenido.getSelectedItem()
+            )){
+                
+                JOptionPane.showMessageDialog(vista, "Se deben elegir contenidos diferentes.","Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+                
+            }
+            
             Juego juego = new Juego(vista.txt_nombre.getText());
             
             if(juego.isRegistered()){
