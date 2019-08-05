@@ -132,11 +132,11 @@ public class Pregunta_Controlador implements ActionListener{
                 opciones[0] = new String("CERRADA");
                 opciones[1] = new String("ABIERTA");
                 
-                String opcion_seleccionada = (String) JOptionPane.showInputDialog(vista, "Seleccione el tipo de pregunta.", "Tipo de pregunta", JOptionPane.DEFAULT_OPTION, null, opciones, opciones[0]);
+                // String opcion_seleccionada = (String) JOptionPane.showInputDialog(vista, "Seleccione el tipo de pregunta.", "Tipo de pregunta", JOptionPane.DEFAULT_OPTION, null, opciones, opciones[0]);
                 
-                Pregunta pregunta = new Pregunta(ruta, opcion_seleccionada, contenido);
+                Pregunta pregunta = new Pregunta(ruta, "CERRADA", contenido);
                 
-                if(opcion_seleccionada.equals("CERRADA")){
+                if( true /*opcion_seleccionada.equals("CERRADA")*/){
                     
                     String [] tipo_literales = new String[2];
                     tipo_literales[0] = new String("IMAGEN");
@@ -158,7 +158,7 @@ public class Pregunta_Controlador implements ActionListener{
                     
                     }
                     
-                } else if (opcion_seleccionada.equals("ABIERTA")){
+                } else if ( false /*opcion_seleccionada.equals("ABIERTA")*/){
                     
                 }
                 
