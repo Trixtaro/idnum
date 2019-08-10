@@ -162,12 +162,39 @@ public class Pregunta_Literal_Controlador implements ActionListener{
                     pregunta.setLiteral_A(getLiteral(codigo));
                     break;
                 case 'B':
+                    
+                    if(pregunta.getLiteral_A().getId_literal() == getLiteral(codigo).getId_literal()){
+                        
+                        JOptionPane.showMessageDialog(vista, "Debe seleccionar un literal diferente.", "Literal "+literal, JOptionPane.WARNING_MESSAGE);
+                        return;
+                        
+                    }
+                    
                     pregunta.setLiteral_B(getLiteral(codigo));
                     break;
                 case 'C':
+                    
+                    if(pregunta.getLiteral_A().getId_literal() == getLiteral(codigo).getId_literal() || 
+                            pregunta.getLiteral_B().getId_literal() == getLiteral(codigo).getId_literal()){
+                        
+                        JOptionPane.showMessageDialog(vista, "Debe seleccionar un literal diferente.", "Literal "+literal, JOptionPane.WARNING_MESSAGE);
+                        return;
+                        
+                    }
+                    
                     pregunta.setLiteral_C(getLiteral(codigo));
                     break;
                 case 'D':
+                    
+                    if(pregunta.getLiteral_A().getId_literal() == getLiteral(codigo).getId_literal() || 
+                            pregunta.getLiteral_B().getId_literal() == getLiteral(codigo).getId_literal()
+                            || pregunta.getLiteral_C().getId_literal() == getLiteral(codigo).getId_literal()){
+                        
+                        JOptionPane.showMessageDialog(vista, "Debe seleccionar un literal diferente.", "Literal "+literal, JOptionPane.WARNING_MESSAGE);
+                        return;
+                        
+                    }
+                    
                     pregunta.setLiteral_D(getLiteral(codigo));
                     break;
                 default:
