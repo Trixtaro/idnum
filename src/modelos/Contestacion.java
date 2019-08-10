@@ -38,6 +38,8 @@ public class Contestacion implements DatabaseAble{
             
             conexion.conectaBD();
             
+            System.out.println("ingresar contestacion - fecha: "+getFecha());
+            
             conexion.actualizaBD(sentencia);
             
             conexion.cerrar_conexionBD();

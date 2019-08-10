@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 public class Literal implements DatabaseAble{
      
@@ -177,7 +176,8 @@ public class Literal implements DatabaseAble{
     @Override
     public void consultarBD() {
         
-        String sentencia = "SELECT * FROM literal WHERE id_literal = '"+getId_literal()+"'";
+        String sentencia = "SELECT * FROM literal WHERE id_literal = '"+getId_literal()+"' OR"
+                + " caracter = '"+getCaracter()+"'";
         
         ResultSet rs;
         

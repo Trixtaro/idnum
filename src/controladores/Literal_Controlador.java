@@ -75,6 +75,16 @@ public class Literal_Controlador implements ActionListener, ItemListener{
                 String oracion = JOptionPane.showInputDialog(vista, "Ingrese el literal:", "Nuevo literal");
                 
                 Literal literal = new Literal(oracion, false);
+                
+                literal.consultarBD();
+                
+                if(literal.getId_literal() == 0){
+                    
+                    JOptionPane.showMessageDialog(vista, "Ya existe un literal con el mismo valor.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    return ;
+                    
+                }
+                
                 literal.ingresarBD();
                 
                 llenar_tabla();
@@ -90,8 +100,8 @@ public class Literal_Controlador implements ActionListener, ItemListener{
                 codigo = (int) vista.tabla.getValueAt(vista.tabla.getSelectedRow(), 0);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(vista, "Debe seleccionar un literal", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return ;
-        }
+                return ;
+            }
             
             Literal literal = new Literal(codigo);
             

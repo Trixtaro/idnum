@@ -94,8 +94,6 @@ public class Pregunta_Controlador implements ActionListener{
         
         if(e.getSource() == vista.boton_seleccionar){
             
-            vista.setVisible(false);
-            
             int codigo;
             
             try {
@@ -104,6 +102,8 @@ public class Pregunta_Controlador implements ActionListener{
                 JOptionPane.showMessageDialog(vista, "Debe seleccionar una pregunta", "Aviso", JOptionPane.WARNING_MESSAGE);
                return ;
             }
+            
+            vista.setVisible(false);
             
             Pregunta pregunta = new Pregunta(codigo);
             pregunta.consultarBD();

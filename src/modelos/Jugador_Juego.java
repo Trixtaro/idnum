@@ -60,9 +60,9 @@ public class Jugador_Juego implements DatabaseAble{
     
     public String [][] getRespuestasExamen(){
         
-        String respuestas [][] = new String[100][3];
+        String respuestas [][] = new String[100][4];
         
-        String sentencia = "SELECT contestacion_objetiva AS Respuesta, IF (pregunta.respuesta= contestacion.contestacion_objetiva,'Correcta','Incorrecta') AS Resultado FROM contestacion, pregunta, literal\n" +
+        String sentencia = "SELECT pregunta.id_contenido AS contenido, contestacion_objetiva AS Respuesta, IF (pregunta.respuesta= contestacion.contestacion_objetiva,'Correcta','Incorrecta') AS Resultado FROM contestacion, pregunta, literal\n" +
             "WHERE contestacion.id_pregunta = pregunta.id_pregunta\n" +
             "AND contestacion.fecha = '"+ getFecha() +"'" +
             "AND  ((pregunta.literal_1 = literal.id_literal AND contestacion.contestacion_objetiva='A')\n" +
@@ -80,19 +80,39 @@ public class Jugador_Juego implements DatabaseAble{
             
             int contador = 0;
             
+            int id_contenido = 0;
+            String nombre_contenido = "Primer contenido";
+            
             while(rs.next()){
                 
                 if(contador == 0){
                     
                     respuestas[contador][0] = "";
                     respuestas[contador][1] = "Respuesta";
-                    respuestas[contador][2] = "Resultado";
+                    respuestas[contador][2] = "Contenido";
+                    respuestas[contador][3] = "Resultado";
+                    
+                    id_contenido = rs.getInt("contenido");
                     
                 }
+                
+                if(id_contenido != rs.getInt("contenido")){
+                    id_contenido = rs.getInt("contenido");
                     
-                    respuestas[contador+1][0] = ""+contador;
+                    switch(nombre_contenido){
+                        
+                        case "Primer contenido": nombre_contenido = "Segundo contenido";
+                        break;
+                        case "Segundo contenido": nombre_contenido = "Tercer contenido";
+                        
+                        
+                    }
+                }
+
+                    respuestas[contador+1][0] = ""+(contador+1);
                     respuestas[contador+1][1] = rs.getString("Respuesta");
-                    respuestas[contador+1][2] = rs.getString("Resultado");
+                    respuestas[contador+1][2] = nombre_contenido;
+                    respuestas[contador+1][3] = rs.getString("Resultado");
                 
                 contador++;
                 
@@ -135,8 +155,7 @@ public class Jugador_Juego implements DatabaseAble{
 
                 juego.consultarBD();
 
-                jugador_juegos[contador] = new Jugador_Juego(jugador, juego, null);
-                jugador_juegos[contador].consultarBD();
+                jugador_juegos[contador] = new Jugador_Juego(jugador, juego, rs.getString("fecha"));
 
                 contador++;
             }
