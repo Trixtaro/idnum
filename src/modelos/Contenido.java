@@ -131,7 +131,8 @@ public class Contenido implements DatabaseAble{
         
         ResultSet rs;
         
-        String sentencia = "SELECT * FROM contenido WHERE id_contenido="+getId_contenido()+"";
+        String sentencia = "SELECT * FROM contenido WHERE id_contenido="+getId_contenido()+" "
+                + "OR nombre_contenido = '"+getNombre_contenido()+"'";
        
        try{
             
@@ -141,6 +142,7 @@ public class Contenido implements DatabaseAble{
             
             if(rs.next()){
                 
+                this.id_contenido = rs.getInt("id_contenido");
                 this.nombre_contenido = rs.getString("nombre_contenido");
                 
             }

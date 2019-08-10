@@ -88,13 +88,11 @@ public class Jugador_Juego implements DatabaseAble{
                     respuestas[contador][1] = "Respuesta";
                     respuestas[contador][2] = "Resultado";
                     
-                } else {
-                    
-                    respuestas[contador][0] = ""+contador;
-                    respuestas[contador][1] = rs.getString("Respuesta");
-                    respuestas[contador][2] = rs.getString("Resultado");
-                    
                 }
+                    
+                    respuestas[contador+1][0] = ""+contador;
+                    respuestas[contador+1][1] = rs.getString("Respuesta");
+                    respuestas[contador+1][2] = rs.getString("Resultado");
                 
                 contador++;
                 

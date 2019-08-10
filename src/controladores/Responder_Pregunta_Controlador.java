@@ -58,7 +58,7 @@ public class Responder_Pregunta_Controlador implements ActionListener, MouseList
         
         vista.etiqueta_pregunta.setIcon(getPregunta().getImageAsIcon());
         
-        if(pregunta.getTipo().equals("IMAGEN")){
+        if(pregunta.getLiteral_A().getTipo_literal().equals("IMAGEN")){
             
             this.vista.etiqueta_a.setIcon(pregunta.getLiteral_A().getImageAsIcon());
             this.vista.etiqueta_b.setIcon(pregunta.getLiteral_B().getImageAsIcon());

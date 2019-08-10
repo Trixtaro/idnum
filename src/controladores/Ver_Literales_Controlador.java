@@ -35,7 +35,9 @@ public class Ver_Literales_Controlador implements ActionListener{
         
         this.vista.etiqueta_pregunta.setIcon(pregunta.getImageAsIcon());
         
-        if(pregunta.getTipo().equals("IMAGEN")){
+        System.out.println(""+pregunta.getTipo());
+        
+        if(pregunta.getLiteral_A().getTipo_literal().equals("IMAGEN")){
             
             this.vista.etiqueta_a.setIcon(pregunta.getLiteral_A().getImageAsIcon());
             this.vista.etiqueta_b.setIcon(pregunta.getLiteral_B().getImageAsIcon());

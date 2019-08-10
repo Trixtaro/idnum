@@ -34,6 +34,7 @@ public class Contenido_Controlador implements ActionListener{
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
         vista.getContentPane().setBackground(Color.decode("#fcf9ea"));
+
         llenar_tabla();
     }
     
@@ -75,6 +76,16 @@ public class Contenido_Controlador implements ActionListener{
             }
             
             Contenido nuevo_contenido = new Contenido(nombre_contenido);
+            
+            nuevo_contenido.consultarBD();
+            
+            if(nuevo_contenido.getId_contenido() != 0){
+            
+                JOptionPane.showMessageDialog(vista, "Ya existe un contenido con el mismo nombre.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+            
+            }
+            
             System.out.println(""+nuevo_contenido.getNombre_contenido());
             nuevo_contenido.ingresarBD();
             

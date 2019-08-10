@@ -57,7 +57,7 @@ public class Literal implements DatabaseAble{
     }
     
     public static Literal [] getLiterales(){
-        Literal [] literales = new Literal[10];
+        Literal [] literales = new Literal[200];
         Literal auxiliar;
         
         ResultSet rs;

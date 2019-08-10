@@ -82,7 +82,7 @@ public class Pregunta implements DatabaseAble{
     }
 
     public static Pregunta [] getPreguntas(Contenido contenido){
-        Pregunta [] preguntas = new Pregunta[20];
+        Pregunta [] preguntas = new Pregunta[100];
         Pregunta auxiliar;
         
         ResultSet rs;
