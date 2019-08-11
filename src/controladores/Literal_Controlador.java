@@ -78,7 +78,7 @@ public class Literal_Controlador implements ActionListener, ItemListener{
                 
                 literal.consultarBD();
                 
-                if(literal.getId_literal() == 0){
+                if(literal.getId_literal() != 0){
                     
                     JOptionPane.showMessageDialog(vista, "Ya existe un literal con el mismo valor.", "Aviso", JOptionPane.WARNING_MESSAGE);
                     return ;

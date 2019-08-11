@@ -16,16 +16,16 @@ public class Jugador_Juego implements DatabaseAble{
         this.fecha = fecha;
     }
     
-    public int getAciertos(){
+    public String getAciertos(){
         
-        String sentencia = "SELECT COUNT(*) AS respuestas_correctas "
-                + "FROM contestacion, pregunta, literal, jugador_juego "
-                + "WHERE jugador_juego.fecha = contestacion.fecha AND pregunta.id_pregunta = contestacion.id_pregunta\n "
-                + "AND jugador_juego.fecha = '"+getFecha()+"'"
-                + "AND  ((pregunta.literal_1 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='A')\n"
-                +"OR  (pregunta.literal_2 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='B')\n"
-                +"OR  (pregunta.literal_3 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='C')\n"
-                +"OR  (pregunta.literal_4 = literal.id_literal AND contestacion.contestacion_objetiva = pregunta.respuesta AND contestacion.contestacion_objetiva='D') )";
+        String sentencia = "SELECT pregunta.id_contenido AS Contenido, SUM(IF (pregunta.respuesta= contestacion.contestacion_objetiva,1,0)) AS Resultado FROM contestacion, pregunta, literal, jugador_juego"
+                + " WHERE jugador_juego.fecha = contestacion.fecha AND pregunta.id_pregunta = contestacion.id_pregunta"
+                + " AND jugador_juego.fecha = '2019-08-10 15:37:15'"
+                + " AND  ((pregunta.literal_1 = literal.id_literal AND contestacion.contestacion_objetiva='A')"
+                + " OR  (pregunta.literal_2 = literal.id_literal AND contestacion.contestacion_objetiva='B') "
+                + " OR  (pregunta.literal_3 = literal.id_literal AND contestacion.contestacion_objetiva='C') "
+                + " OR  (pregunta.literal_4 = literal.id_literal AND contestacion.contestacion_objetiva='D')) "
+                + " GROUP BY pregunta.id_contenido ORDER BY contestacion.fecha ASC";
         
         ResultSet rs;
         
@@ -35,15 +35,13 @@ public class Jugador_Juego implements DatabaseAble{
             
             rs = idnum.Idnum.conexion.consultaBD(sentencia);
             
-            int valor;
+            String valor = "";
             
-            if(rs.next()){
+            while(rs.next()){
                 
-                valor = rs.getInt("respuestas_correctas");
+                valor += rs.getInt("Resultado")+"-";
                 
-            } else
-                
-                valor = 0;
+            }
                 
             
             idnum.Idnum.conexion.cerrar_conexionBD();
@@ -53,7 +51,7 @@ public class Jugador_Juego implements DatabaseAble{
         } catch (Exception ex) {
             
             System.out.println("Jugador_Juego - getAciertos: "+ex);
-            return 0;
+            return null;
             
         }
     }

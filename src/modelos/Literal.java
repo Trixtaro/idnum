@@ -189,6 +189,7 @@ public class Literal implements DatabaseAble{
            
             if(rs.next()){
                 
+                this.setId_literal(rs.getInt("id_literal"));
                 this.setTipo_literal(rs.getString("tipo"));
                 this.setCaracter(rs.getString("caracter"));
                 this.setImagen(rs.getBlob("imagen"));

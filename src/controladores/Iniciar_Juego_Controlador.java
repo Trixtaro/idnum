@@ -24,6 +24,10 @@ public class Iniciar_Juego_Controlador implements ActionListener{
 
     int preguntas_respondidas;
     int max_preguntas;
+    
+    int n_preguntas_1;
+    int n_preguntas_2;
+    int n_preguntas_3;
 
     ArrayList <Contestacion> contestaciones;
     
@@ -39,7 +43,6 @@ public class Iniciar_Juego_Controlador implements ActionListener{
         this.juego = juego;
         
         preguntas_respondidas = 0;
-        max_preguntas = getCantidadDePreguntas();
         
         this.vista.boton_empezar.addActionListener(this);
         this.vista.boton_salir.addActionListener(this);
@@ -47,6 +50,8 @@ public class Iniciar_Juego_Controlador implements ActionListener{
     }
     
     public void iniciar(){
+        
+        getCantidadDePreguntas();
         
         this.vista.setTitle("JUGAR "+juego.getNombre());
         this.vista.etiqueta_n_preguntas.setText(0+" / "+max_preguntas);
@@ -76,7 +81,7 @@ public class Iniciar_Juego_Controlador implements ActionListener{
         
     }
     
-    public int getCantidadDePreguntas (){
+    public void getCantidadDePreguntas (){
         
         int contador = 0;
         
@@ -88,6 +93,8 @@ public class Iniciar_Juego_Controlador implements ActionListener{
             i++;
         }
         
+        this.n_preguntas_1 = i;
+        
         i = 0;
         
         while(Pregunta.getPreguntas(juego.getContenido_2())[i] != null){
@@ -96,6 +103,8 @@ public class Iniciar_Juego_Controlador implements ActionListener{
             i++;
             
         }
+        
+        this.n_preguntas_2 = i;
         
         i = 0;
         
@@ -106,7 +115,9 @@ public class Iniciar_Juego_Controlador implements ActionListener{
             
         }
         
-        return contador;
+        this.n_preguntas_3 = i;
+        
+        this.max_preguntas = contador;
         
     }
     
@@ -174,8 +185,18 @@ public class Iniciar_Juego_Controlador implements ActionListener{
             contestaciones.get(i).ingresarBD();
             
         }
+        
+        int puntaje = Integer.valueOf(jugador_Juego.getAciertos().split("-")[0]);
+        puntaje += Integer.valueOf(jugador_Juego.getAciertos().split("-")[1]);
+        puntaje += Integer.valueOf(jugador_Juego.getAciertos().split("-")[2]);
                 
-        JOptionPane.showMessageDialog(vista, jugador.getNombre_jugador()+"\nRespuestas correctas: "+jugador_Juego.getAciertos()+" de "+max_preguntas, "Resultado final", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(vista, jugador.getNombre_jugador() +
+                "\nRespuestas correctas: "
+                + "\nPrimer contenido: "+jugador_Juego.getAciertos().split("-")[0]+" de "+n_preguntas_1
+                + "\nPrimer contenido: "+jugador_Juego.getAciertos().split("-")[1]+" de "+n_preguntas_2
+                + "\nPrimer contenido: "+jugador_Juego.getAciertos().split("-")[2]+" de "+n_preguntas_3
+                +"\nResultado final: "+puntaje+" de "+max_preguntas,
+                "Resultado",JOptionPane.INFORMATION_MESSAGE);
         
     }
     
