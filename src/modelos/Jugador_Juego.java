@@ -20,7 +20,7 @@ public class Jugador_Juego implements DatabaseAble{
         
         String sentencia = "SELECT pregunta.id_contenido AS Contenido, SUM(IF (pregunta.respuesta= contestacion.contestacion_objetiva,1,0)) AS Resultado FROM contestacion, pregunta, literal, jugador_juego"
                 + " WHERE jugador_juego.fecha = contestacion.fecha AND pregunta.id_pregunta = contestacion.id_pregunta"
-                + " AND jugador_juego.fecha = '2019-08-10 15:37:15'"
+                + " AND jugador_juego.fecha = '"+getFecha()+"'"
                 + " AND  ((pregunta.literal_1 = literal.id_literal AND contestacion.contestacion_objetiva='A')"
                 + " OR  (pregunta.literal_2 = literal.id_literal AND contestacion.contestacion_objetiva='B') "
                 + " OR  (pregunta.literal_3 = literal.id_literal AND contestacion.contestacion_objetiva='C') "
@@ -39,11 +39,11 @@ public class Jugador_Juego implements DatabaseAble{
             
             while(rs.next()){
                 
-                valor += rs.getInt("Resultado")+"-";
+                valor += rs.getString("Resultado")+"-";
                 
             }
-                
             
+  
             idnum.Idnum.conexion.cerrar_conexionBD();
             
             return valor;
